@@ -1,159 +1,107 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>フォロー中アカウントのダイジェスト（10/29）</title>
-<style>
-:root{--bg:#0f1115;--panel:#171a21;--panel2:#1d212a;--line:#2a2f3a;--text:#e8eaf0;--muted:#9aa3b2;--accent:#7aa2ff;--gold:#f5c451;--silver:#c9d1dc;--bronze:#d9925b}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
-.wrap{max-width:860px;margin:0 auto;padding:48px 24px 32px}
-header{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
-.eyebrow{display:inline-block;font-size:12px;letter-spacing:.12em;color:var(--accent);background:rgba(122,162,255,.1);border:1px solid rgba(122,162,255,.25);padding:3px 10px;border-radius:999px;margin-bottom:14px}
-h1{font-size:30px;font-weight:700;letter-spacing:.01em;line-height:1.4}
-.sub{color:var(--muted);font-size:14px;margin-top:6px}
-.list{display:flex;flex-direction:column;gap:16px;list-style:none}
-.card{display:flex;gap:20px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .2s,transform .2s}
-.card:hover{border-color:#3c4456;transform:translateY(-2px)}
-.rank{flex:0 0 48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:#252a35;color:var(--text);border:1px solid var(--line)}
-.r1 .rank{background:rgba(245,196,81,.14);color:var(--gold);border-color:rgba(245,196,81,.4)}
-.r2 .rank{background:rgba(201,209,220,.12);color:var(--silver);border-color:rgba(201,209,220,.35)}
-.r3 .rank{background:rgba(217,146,91,.14);color:var(--bronze);border-color:rgba(217,146,91,.4)}
-.body{flex:1;min-width:0}
-.card h2{font-size:18px;font-weight:700;line-height:1.5;margin-bottom:6px}
-.card p{color:#c3c9d5;font-size:15px}
-.src{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent);text-decoration:none;word-break:break-all}
-.src:hover{text-decoration:underline}
-.tag{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
-footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;letter-spacing:.05em}
-@media (max-width:600px){.wrap{padding:32px 16px}h1{font-size:23px}.card{gap:14px;padding:18px}.rank{flex-basis:40px;height:40px;font-size:18px}.card h2{font-size:16px}}
 
-.sec{font-size:19px;margin:8px 0 14px}
-table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
-th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
-th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
-td:first-child,th:first-child{text-align:left}
-td.n{color:var(--gold);font-weight:700}
-.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
-.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
-.post:hover{border-color:#3c4456}
-.post .meta{font-size:12px;color:var(--muted)}
-.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
-.none{color:var(--muted);font-size:14px;margin-bottom:6px}
-.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
-.agent:hover{border-color:#3c4456}
-.agent b{color:var(--gold);font-size:14px}
-.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
-.agent .meta{font-size:12px;color:var(--muted)}
-</style>
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#0f1115">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="AIニュース">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" href="icon-192.png">
-<meta name="robots" content="noindex,nofollow">
-<style id="pwa-tabs">
-body{padding-top:56px!important}
-#pwa-tabs-bar{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;gap:6px;padding:8px 10px;padding-top:calc(8px + env(safe-area-inset-top));background:rgba(15,17,21,.96);border-bottom:1px solid #2a2f3a;backdrop-filter:blur(8px)}
-#pwa-tabs-bar a{flex:1;text-align:center;padding:9px 4px;border-radius:10px;font-size:14px;font-weight:600;color:#9aa3b2;text-decoration:none;border:1px solid #2a2f3a;background:#171a21;white-space:nowrap}
-#pwa-tabs-bar a.on{color:#0f1115;background:#7aa2ff;border-color:#7aa2ff}
-#pwa-tabs-bar .s{display:none}@media(max-width:560px){#pwa-tabs-bar .l{display:none}#pwa-tabs-bar .s{display:inline}}
-</style></head>
 <body><nav id="pwa-tabs-bar"><a href="index.html" class="on" aria-current="page"><span class="l">フォロー中ダイジェスト</span><span class="s">フォロー中</span></a><a href="world.html"><span class="l">世界のAIニュース</span><span class="s">世界のAI</span></a><a href="jp.html"><span class="l">日本語圏の活用法</span><span class="s">日本語圏</span></a></nav>
 <div class="wrap">
 <header>
 <span class="eyebrow">FOLLOWING DIGEST</span>
-<h1>フォロー中アカウントのダイジェスト（10/29）</h1>
-<div class="sub">ホームタイムライン1ページ（10/28 0時〜10/29 8時、日本時間）から集計</div>
+<h1>フォロー中アカウントのダイジェスト（10/31）</h1>
+<div class="sub">ホームタイムライン1ページ（10/30 0時〜10/31 8時、日本時間）から集計</div>
 </header>
-<h2 class="sec">AIエージェントの使い方 5選（フォロー中より）</h2><a class="agent" href="https://x.com/ClaudeCode_aca/status/2115564273682526268" target="_blank" rel="noopener noreferrer"><b>1. @ClaudeCode_aca</b> <span class="meta">♥1 · 保存 0</span><p>Claude Codeには1人に「書いて」と頼むのではなく、書く係と確かめる係を分けて頼むのがよく、部長1人と平社員3人の体制にしたらチェック係が下書きに15件の指摘を出したと紹介している。</p></a><a class="agent" href="https://x.com/ClaudeCode_aca/status/2115201891130826871" target="_blank" rel="noopener noreferrer"><b>2. @ClaudeCode_aca</b> <span class="meta">♥16 · 保存 19</span><p>Claudeのチャットと Claude Codeの使い分けは、1回で終わる仕事はチャット、くり返す仕事は成果物と決まりがフォルダに残るClaude Code、という1つの基準で決めればよいと解説している。</p></a><a class="agent" href="https://x.com/claudecode84/status/2115275974590025809" target="_blank" rel="noopener noreferrer"><b>3. @claudecode84</b> <span class="meta">♥24 · 保存 28</span><p>Claudeを使い始めたら自分の仕事に合うスキルを1つ試すのがよいとして、合計25.2万スターを集めた9つのGitHubリポジトリから無料で使える32個のスキルを紹介している。</p></a><a class="agent" href="https://x.com/AiAircle34052/status/2115269831910183091" target="_blank" rel="noopener noreferrer"><b>4. @AiAircle34052</b> <span class="meta">♥3 · 保存 2</span><p>ダウンロードフォルダにAGENTS.mdやCLAUDE.mdが1枚あるだけで、そこで起動したCodexやClaude Codeが指示を読んで自分の設定を書き換えてしまうという検証結果を紹介し、起動場所に注意を促している。</p></a><a class="agent" href="https://x.com/AiAircle34052/status/2115350102512693267" target="_blank" rel="noopener noreferrer"><b>5. @AiAircle34052</b> <span class="meta">♥25 · 保存 26</span><p>JPモルガンの python-training とゴールドマン・サックスの gs-quant という、GitHubで無料公開されている金融大手のコードをClaude Codeと一緒に動かす方法を紹介している。</p></a><h2 class="sec" style="margin-top:28px">投稿件数（リポスト・返信を除く）</h2><table><tr><th>アカウント</th><th>10/28（前日）</th><th>10/29（今朝8時まで）</th></tr><tr><td>@elonmusk</td><td class="n">16</td><td>4</td></tr><tr><td>@AiAircle34052</td><td class="n">7</td><td>0</td></tr><tr><td>@sugawara11</td><td class="n">5</td><td>0</td></tr><tr><td>@ds_nakajima</td><td class="n">4</td><td>1</td></tr><tr><td>@codexneo4</td><td class="n">3</td><td>0</td></tr><tr><td>@ClaudeCode_aca</td><td class="n">2</td><td>1</td></tr><tr><td>@swipecard7web</td><td class="n">2</td><td>0</td></tr><tr><td>@claudecode84</td><td class="n">1</td><td>0</td></tr><tr><td>@ClaudeCode_love</td><td class="n">1</td><td>0</td></tr><tr><td>@Codestudiopjbk</td><td class="n">1</td><td>0</td></tr><tr><td>@woda_minato</td><td class="n">1</td><td>0</td></tr><tr><td>@halukik_0520</td><td class="n">0</td><td>0</td></tr><tr><td>@nakaji_sub_</td><td class="n">0</td><td>0</td></tr><tr><td>@jiro_aicompany</td><td class="n">0</td><td>0</td></tr><tr><td><b>合計</b></td><td class="n">43</td><td>6</td></tr></table><h2 class="sec">各アカウントで反響の大きかった投稿</h2><div class="who">@elonmusk</div><a class="post" href="https://x.com/elonmusk/status/2115129139468673514" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 02:10 · ♥120,952 · RP 10,879 · 表示 6,441,078</span><p>Good</p></a><a class="post" href="https://x.com/elonmusk/status/2115146545448571175" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 03:20 · ♥36,720 · RP 6,234 · 表示 5,712,660</span><p>😑</p></a><div class="who">@AiAircle34052</div><a class="post" href="https://x.com/AiAircle34052/status/2115245413163044900" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 09:53 · ♥89 · RP 3 · 表示 11,868</span><p>【事件】
-ある投稿者が Claude Code で母親の iPhone を点検したところ、2024年に知人へ譲った iPad に、まだ母親の Apple ID が残っていた😳しかも、写真もメッセージも同期され続けていた。
-https://t.co/1fTo4fsjeE
-・譲った iPad が、今も母の Apple ID でサインインしたまま
-・iCloud</p></a><a class="post" href="https://x.com/AiAircle34052/status/2115350102512693267" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 16:49 · ♥25 · RP 3 · 表示 2,545</span><p>【海外で話題｜Claude Code×金融大手のコード】
-JPモルガンやゴールドマン・サックスが公開しているコードを、Claude Code と一緒に動かす方法が話題😳
-https://t.co/8id5NrvpCs
-しかも、どちらも GitHub で無料公開。
-その名も
-ーーpython-training と gs-quant
-・JPモルガンの python-training</p></a><div class="who">@sugawara11</div><a class="post" href="https://x.com/sugawara11/status/2115199956437127653" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 06:52 · ♥31,308 · RP 7,571 · 表示 3,789,709</span><p>東野圭吾さんの遺産約50億に対して、お二人の姉が約33億円の相続税を払うとの試算が出ていますね。
+<h2 class="sec">AIエージェントの使い方 5選（フォロー中より）</h2><a class="agent" href="https://x.com/ClaudeCode_love/status/2116112885931987181" target="_blank" rel="noopener noreferrer"><b>1. @ClaudeCode_love</b> <span class="meta">♥75 · 保存 82</span><p>海外で1,200いいねを超えた「Claude Codeのスキル定番10選」を調べると10個ともGitHubスター10万超えで、どれも公開中なのでClaude Codeに入れれば今日から使えると紹介している。</p></a><a class="agent" href="https://x.com/ClaudeCode_aca/status/2116002169988042833" target="_blank" rel="noopener noreferrer"><b>2. @ClaudeCode_aca</b> <span class="meta">♥41 · 保存 34</span><p>Claude Codeに無料の3Dソフト「Blender」を操作させる「BlenderMCP」を使い、言葉で頼むだけで3Dムービーを1本作った手順を3ステップで紹介している。</p></a><a class="agent" href="https://x.com/AiAircle34052/status/2116002409252319601" target="_blank" rel="noopener noreferrer"><b>3. @AiAircle34052</b> <span class="meta">♥26 · 保存 30</span><p>普段の作業からClaude Codeが自分でスキルを書き、使わないものは片付ける無料プラグイン「Autoharness」を、2行で入れられるコマンド付きで紹介している。</p></a><a class="agent" href="https://x.com/Codestudiopjbk/status/2116139812759683103" target="_blank" rel="noopener noreferrer"><b>4. @Codestudiopjbk</b> <span class="meta">♥15 · 保存 8</span><p>Codexのサブエージェントが親の会話をまるごと引き継いで動くことがあり、レビュー係が実装の経緯を知った状態で始まってしまう問題と、その直し方を解説している。</p></a><a class="agent" href="https://x.com/AiAircle34052/status/2116029579865510175" target="_blank" rel="noopener noreferrer"><b>5. @AiAircle34052</b> <span class="meta">♥12 · 保存 18</span><p>Claude Codeの利用枠を長持ちさせるため、普段の作業はSonnet、大事な判断だけOpusに任せる、公式ドキュメントにある組み合わせの設定方法を紹介している。</p></a><h2 class="sec" style="margin-top:28px">投稿件数（リポスト・返信を除く）</h2><table><tr><th>アカウント</th><th>10/30（前日）</th><th>10/31（今朝8時まで）</th></tr><tr><td>@elonmusk</td><td class="n">26</td><td>19</td></tr><tr><td>@AiAircle34052</td><td class="n">5</td><td>0</td></tr><tr><td>@ClaudeCode_aca</td><td class="n">4</td><td>1</td></tr><tr><td>@ClaudeCode_love</td><td class="n">4</td><td>1</td></tr><tr><td>@claudecode84</td><td class="n">3</td><td>0</td></tr><tr><td>@halukik_0520</td><td class="n">3</td><td>0</td></tr><tr><td>@sugawara11</td><td class="n">3</td><td>0</td></tr><tr><td>@Codestudiopjbk</td><td class="n">2</td><td>0</td></tr><tr><td>@codexneo4</td><td class="n">2</td><td>0</td></tr><tr><td>@ds_nakajima</td><td class="n">1</td><td>0</td></tr><tr><td>@swipecard7web</td><td class="n">1</td><td>0</td></tr><tr><td>@woda_minato</td><td class="n">1</td><td>0</td></tr><tr><td>@jiro_aicompany</td><td class="n">0</td><td>0</td></tr><tr><td>@nakaji_sub_</td><td class="n">0</td><td>0</td></tr><tr><td><b>合計</b></td><td class="n">55</td><td>21</td></tr></table><h2 class="sec">各アカウントで反響の大きかった投稿</h2><div class="who">@elonmusk</div><a class="post" href="https://x.com/elonmusk/status/2116039632743702637" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 14:28 · ♥281,154 · RP 52,513 · 表示 20,324,792</span><p>My biggest concern is that if there is a clean sweep by Democrats of the House, Senate and Presidency in 2028, they will:
 
-50億×55％(最高税率)×1.2倍(兄弟姉妹は2割増)=33億
-という試算だと思います。
+1. Make DC and Puerto Rico states to gain a strong majority in the Senate. 
 
-この33億を原則として10ヶ月以内に現金一括納税です。
+2. Open the borders and legalize everyone living in America illegally to cement</p></a><a class="post" href="https://x.com/elonmusk/status/2116037732845957434" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 14:21 · ♥104,460 · RP 6,744 · 表示 6,523,788</span><p>🇺🇸🇺🇸 I voted early today in Texas!! 🇺🇸🇺🇸</p></a><div class="who">@AiAircle34052</div><a class="post" href="https://x.com/AiAircle34052/status/2116002409252319601" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 12:01 · ♥26 · RP 1 · 表示 1,766</span><p>Claude Code が、普段の作業からスキルを書き、使わないものは自分で片付ける。
+そんな無料プラグイン「Autoharness」が公開されました🔥
+これ、超ざっくり言うと👇
+「毎回同じ説明をする手間」を、Claude Code が自分で覚えて減らしてくれるやつ！
+入れ方は2行👇
+/plugin marketplace add https://t.co/04jivvuXLz</p></a><a class="post" href="https://x.com/AiAircle34052/status/2116029579865510175" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 13:49 · ♥12 · RP 0 · 表示 1,743</span><p>【Claude Code の利用枠を長持ちさせる設定】
+Opus 5.5 でずっと動かして、利用枠がすぐ尽きる人へ😳
+https://t.co/8IrNoydxDZ
+「普段の作業は Sonnet、大事な判断だけ Opus」
+という分け方が、海外で広がっています。
+しかも、公式ドキュメントに載っている組み合わせ。
+それがこちら👇
+① 起動
+→</p></a><div class="who">@ClaudeCode_aca</div><a class="post" href="https://x.com/ClaudeCode_aca/status/2116002169988042833" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 12:00 · ♥41 · RP 0 · 表示 2,718</span><p>【Claude Code×Blender】
+Claude Codeに言葉で頼むだけで、
+3Dムービーが1本できました😳
 
-物納制度はありますが、ほとんど認められません。</p></a><a class="post" href="https://x.com/sugawara11/status/2115391122667077930" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 19:32 · ♥658 · RP 50 · 表示 46,316</span><p>稲盛和夫さんが
+https://t.co/8pRSDHFy6n
 
-「経営者が仕事のこと以外のことを考えていたら、その時間は経営を放棄しているのと一緒。24時間仕事のことを考えなさい。」
+使ったのは、Opus 5.5と「BlenderMCP」だけ。
+BlenderMCPは、Claude Codeから
+無料の3DソフトBlenderを動かす仕組みです。
 
-と言ってましたが、社長になったらワークライフバランスなんて、言ってられないですよ。
+始め方は3つです↓↓
+①Blender（無料）を入れる https://t.co/a2e4bIVaAz https://t.co/iMHqkPQ3D2</p></a><a class="post" href="https://x.com/ClaudeCode_aca/status/2115926654841168200" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 07:00 · ♥14 · RP 0 · 表示 1,007</span><p>文章の下書きまでFable 5.1に頼むのは、
+もったいないです。
+待つ時間はSonnetの約2倍。
+文章の出来は、ほぼ同じでした。
 
-僕もよく</p></a><div class="who">@ds_nakajima</div><a class="post" href="https://x.com/ds_nakajima/status/2115388086310097310" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 19:19 · ♥144 · RP 23 · 表示 25,528</span><p>Chromeを今すぐアップデート！！Webページを開くだけでChromeのサンドボックスの外で攻撃者のコードが動く可能性がある？あかんやん…</p></a><a class="post" href="https://x.com/ds_nakajima/status/2115290206949794187" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 12:51 · ♥55 · RP 0 · 表示 3,639</span><p>素晴らしい伸びである。
-#SEO</p></a><div class="who">@codexneo4</div><a class="post" href="https://x.com/codexneo4/status/2115338274164150550" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 16:02 · ♥134 · RP 5 · 表示 42,971</span><p>遂にOpen AIが本気を出してきた‼️
-『GPT-6.1 Terra』を一度使ったら
-『Opus5.5』には戻れなくなる
-明らかな価格破壊を起こしてきた👇</p></a><a class="post" href="https://x.com/codexneo4/status/2115278128146964863" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 12:03 · ♥108 · RP 3 · 表示 56,044</span><p>GPT-6.1 Terra Maxがゴミ過ぎる。
-5時間の使用制限まで使い切っても
-API換算1000円程度しか使えてない↓</p></a><div class="who">@ClaudeCode_aca</div><a class="post" href="https://x.com/ClaudeCode_aca/status/2115201891130826871" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 07:00 · ♥16 · RP 1 · 表示 2,902</span><p>Claudeのチャットと、Claude Code。
-結局どっちに頼めばいいのか。
+14個の依頼を3つのモデルに3回ずつ、
+計126回出して比べた結果です。
+はっきり違ったのは、出来より速さでした。
 
-分け方は1つだけです。
-コードが書けるかどうかは関係ありません。
+仕事ごとにどのモデルを選ぶかを1枚にまとめました👇 https://t.co/ASzpW4G8Vf https://t.co/tLjFBkqRTc</p></a><div class="who">@ClaudeCode_love</div><a class="post" href="https://x.com/ClaudeCode_love/status/2115959368021946603" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 09:10 · ♥292 · RP 11 · 表示 29,516</span><p>いや、マジでClaude Codeのultracodeやばいな。
+海外の開発者がultracodeを使い、Opus 5.5に9体のサブエージェントを指揮させて作った3Dの村がこれ。
+https://t.co/6cqGOFNWYF
 
-・1回で終わる仕事は、チャット
-・くり返す仕事は、Claude Code
+最初に見た瞬間、「台所のシンクの中に村がある…」ってなったわ。
 
-Claude Codeは、できたものと
-頼んだときのきまりがフォルダに残ります。 https://t.co/GhEfrIXkeM</p></a><a class="post" href="https://x.com/ClaudeCode_aca/status/2115277386027844002" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 12:00 · ♥4 · RP 0 · 表示 676</span><p>【海外で話題】
-5つのAIに「重さに耐える橋」を設計させ、
-3Dプリンターで作って重りを載せた結果、
-Claude Opus 5.5の橋だけ、
-人が乗っても一瞬耐えました😳
+作り込みがマジで細かい👇 https://t.co/GG2hiYAWi4</p></a><a class="post" href="https://x.com/ClaudeCode_love/status/2116005934837510608" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 12:15 · ♥82 · RP 7 · 表示 9,767</span><p>【本人が答えを出してしまった】
+Claude Codeを作った本人のBoris Chernyが、「今週は上限の減りが早すぎる」という声に返信で答えた
+『使える量が急に減る問題』の調査結果が話題に😳
+これ、何が分かったかというと👇 https://t.co/dENujqDG59 https://t.co/3at7XfnaHm</p></a><div class="who">@claudecode84</div><a class="post" href="https://x.com/claudecode84/status/2116120889284853820" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 19:51 · ♥73 · RP 3 · 表示 6,871</span><p>Claude Codeユーザーに朗報。
+Ultrathinkが復活。
 
-https://t.co/ROJx9E1kFN
+試すなら
+「/be-ambitious」と組み合わせて👇 https://t.co/6oDJ2w0Hmi</p></a><a class="post" href="https://x.com/claudecode84/status/2116090304227062123" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 17:50 · ♥0 · RP 0 · 表示 733</span><p>Claude API、
+画像やPDFをまとめて送る際の
+容量に余裕ができた
 
-耐えた重さはこうです↓↓
-・Claude Opus 5.5：約59kg
-・Meta Muse Spark 1.3：約12kg
-・GPT-6 Astra：約8kg https://t.co/nxKx7AgvBb</p></a><div class="who">@swipecard7web</div><a class="post" href="https://x.com/swipecard7web/status/2115455278032523473" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 23:46 · ♥0 · RP 0 · 表示 6</span><p>本日もありがとうございました。
-自分のSDDの様なものが恥ずかしくなりました。
-基本的に勉強のし直しですね。
-3日目も楽しみです。</p></a><a class="post" href="https://x.com/swipecard7web/status/2115340882903990346" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 16:12 · ♥0 · RP 0 · 表示 5</span><p>YTはよく拝見させていただいています。
-レベル感が高く非エンジニアには壁が高いですが、自分が今体験してる内容そのものの解説で目から鱗状態です。理解は６分程度ですがアーカイブを見て勉強させていただいています。Day2も楽しみにしています。
-ありがとうございます😅</p></a><div class="who">@claudecode84</div><a class="post" href="https://x.com/claudecode84/status/2115275974590025809" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 11:54 · ♥24 · RP 3 · 表示 2,718</span><p>Claudeを使い始めたばかりなら、
-まずは自分の仕事に合う「スキル」を
-1つ試してみてください。
+Messages APIとToken Counting APIの最大リクエストサイズが、32MBから128MBへ。従来の4倍に拡大しました
 
-今回は、
-合計25.2万スターを集めた
-9つのGitHubリポジトリから、
-無料で使える32個のスキルを
-ご紹介します👇</p></a><div class="who">@ClaudeCode_love</div><a class="post" href="https://x.com/ClaudeCode_love/status/2115225028690379157" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 08:32 · ♥55 · RP 6 · 表示 8,293</span><p>【海外で話題】
-海外のクリエイターが、Claude CodeとOpus 5.5で「人間の目」1つを7日かけて作り込んだと話題😳
-https://t.co/cBI5kri9Xt
-しかも、テクスチャも3Dモデルも写真も使っていない。
-あるのは数式と光の計算、約400個のパラメータだけ。
+これまで、 https://t.co/6oDJ2w0Hmi</p></a><div class="who">@halukik_0520</div><a class="post" href="https://x.com/halukik_0520/status/2116129205843062902" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 20:24 · ♥41 · RP 5 · 表示 6,697</span><p>https://t.co/5SU2HypzaS</p></a><a class="post" href="https://x.com/halukik_0520/status/2116092868817551610" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 18:00 · ♥15 · RP 1 · 表示 1,000</span><p>【AIで作ったって、クライアントに言うべき？】
 
-何がヤバいかというと👇</p></a><div class="who">@Codestudiopjbk</div><a class="post" href="https://x.com/Codestudiopjbk/status/2115289208529297651" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 12:47 · ♥9 · RP 0 · 表示 1,683</span><p>【速報】
-これはCodexを使っている人、全員見た方がいい🫵
-セキュリティ企業のForever Securityが、
-「ダウンロードフォルダのAGENTS.mdで、AIエージェントが操られた」実例を報告しました。
-しかも、実際の顧客のPCで見つかった話。
-何が起きたかっていうと👇
-https://t.co/UhHhhnkCER
-~/Downloads https://t.co/dQeF9zUgAB</p></a><div class="who">@woda_minato</div><a class="post" href="https://x.com/woda_minato/status/2115399705421299736" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 20:06 · ♥5 · RP 0 · 表示 465</span><p>動画編集ソフトなし
-Opus5.5あれば余裕
+クライアントへの提案資料に、AIで作った画像を使うとき。
 
-※作成時は6月だったのですが
-Opus5.5あれば余裕でこれが作れます👇
+「AIで作りました」と先に言うべきか、黙っておくべきか。
+月曜のクリエイターキッチンで、この質問をもらいました。
 
-作り方は簡単</p></a><div class="who">@halukik_0520</div><div class="none">この期間の投稿はありませんでした。</div><div class="who">@nakaji_sub_</div><div class="none">この期間の投稿はありませんでした。</div><div class="who">@jiro_aicompany</div><div class="none">この期間の投稿はありませんでした。</div>
-<footer>毎朝8:08配信 · X Access · 2026-10-29</footer>
+僕の結論は、言うべき。 https://t.co/IqUr5jibQs</p></a><div class="who">@sugawara11</div><a class="post" href="https://x.com/sugawara11/status/2116117407852826949" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 19:38 · ♥314 · RP 17 · 表示 42,202</span><p>起業をして最悪の場合は、会社員に戻れますか？
+
+起業をしてもうまくいかないパターンの方が多いです。
+3年で半分、10年で9割が失敗するとも言われています。
+
+その失敗することもある程度は想定しておかないと、人生が詰む可能性があります。</p></a><a class="post" href="https://x.com/sugawara11/status/2116102056759243017" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 18:37 · ♥186 · RP 4 · 表示 13,685</span><p>最近は本当に多くの方から、コメントをもらえることが多くなったし、直接声をかけてもらえることも多くなりました。
+
+先日は鈴鹿サーキットのスーパーGTという、国内でも最高峰のレースを見学しに行ったんですが、たくさんの方に声をかけていただけました。</p></a><div class="who">@Codestudiopjbk</div><a class="post" href="https://x.com/Codestudiopjbk/status/2116139812759683103" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 21:07 · ♥15 · RP 1 · 表示 1,506</span><p>【実は】
+Codexのサブエージェント、親の会話をまるごと引き継いで動いてることがある。
+これ、ただの細かい仕様の話じゃないです😳
+
+何が困って、どう直すかというと👇
+
+・レビュー係のサブエージェントが、実装の経緯まで全部知った状態で始まる https://t.co/lyuMRWcnY5 https://t.co/dSTovvDQGa</p></a><a class="post" href="https://x.com/Codestudiopjbk/status/2116006679343210614" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 12:18 · ♥11 · RP 1 · 表示 1,402</span><p>CodexでWord・Excel・PowerPointを、書式を崩さずにそのまま編集できるプラグインが出た。
+その名も「Reducto Office」。プラグイン自体は無料です！！！
+これ、ただファイルを書き換えるだけじゃなくて👇
+https://t.co/bfCXKG8AnN
+・Word（docx）、Excel（xlsx）、PowerPoint（pptx）に対応 https://t.co/srNEK4rn0f</p></a><div class="who">@codexneo4</div><a class="post" href="https://x.com/codexneo4/status/2115974214108975399" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 10:09 · ♥376 · RP 18 · 表示 64,628</span><p>最近ChatGPT Plusのコスパが最悪
+
+マジで中間層のユーザーから
+躊躇なく搾取してる感じがあるなぁ
+
+同じ金額でClaudeやGrokが
+提供してる物と比べるとアホらしいよ👇</p></a><a class="post" href="https://x.com/codexneo4/status/2116051846578241796" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 15:17 · ♥29 · RP 1 · 表示 4,281</span><p>Codexを毎日使う人にとっては朗報！！
+Codexのトークンを8割削減して
+コスパよく使う方法が革新的すぎる</p></a><div class="who">@ds_nakajima</div><a class="post" href="https://x.com/ds_nakajima/status/2115860608478548323" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 02:37 · ♥41 · RP 0 · 表示 8,252</span><p>それはさすがにwwww
+
+本日より、すべての Pro 100/200/500 ティアおよび Business Premium の全使用制限を倍にします。 https://t.co/qa8eSRd5u3</p></a><div class="who">@swipecard7web</div><a class="post" href="https://x.com/swipecard7web/status/2116182931895128453" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 23:58 · ♥1 · RP 0 · 表示 13</span><p>今日もありがとうございました。
+今SDDで開発中のアプリの評価をしてもらいたいと思いました。「つぶやき」は良いですね。
+初心者+＠の自分レベルをとても感じさせていただきました。メンシブ民になるしかないよね！ https://t.co/oZZsrCroBD</p></a><div class="who">@woda_minato</div><a class="post" href="https://x.com/woda_minato/status/2116142854145978648" target="_blank" rel="noopener noreferrer"><span class="meta">10/30 21:19 · ♥4 · RP 0 · 表示 309</span><p>今日久しぶりに閃輝性暗点になりました。
+
+急に視界の一部が光り、その後まともにPCの画面が見れず→頭が割れそうになる→オフィスから帰宅出来なかったので収まるまで1時間くらい目を瞑ってました。</p></a>
+<footer>毎朝8:08配信 · X Access · フォロー中ダイジェスト · 2026-10-31</footer>
 </div>
 <script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js')})}</script></body>
 </html>
