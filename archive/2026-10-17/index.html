@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>フォロー中アカウントのダイジェスト（10/17）</title>
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--panel2:#1d212a;--line:#2a2f3a;--text:#e8eaf0;--muted:#9aa3b2;--accent:#7aa2ff;--gold:#f5c451;--silver:#c9d1dc;--bronze:#d9925b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:48px 24px 32px}
+header{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.12em;color:var(--accent);background:rgba(122,162,255,.1);border:1px solid rgba(122,162,255,.25);padding:3px 10px;border-radius:999px;margin-bottom:14px}
+h1{font-size:30px;font-weight:700;letter-spacing:.01em;line-height:1.4}
+.sub{color:var(--muted);font-size:14px;margin-top:6px}
+.list{display:flex;flex-direction:column;gap:16px;list-style:none}
+.card{display:flex;gap:20px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#3c4456;transform:translateY(-2px)}
+.rank{flex:0 0 48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:#252a35;color:var(--text);border:1px solid var(--line)}
+.r1 .rank{background:rgba(245,196,81,.14);color:var(--gold);border-color:rgba(245,196,81,.4)}
+.r2 .rank{background:rgba(201,209,220,.12);color:var(--silver);border-color:rgba(201,209,220,.35)}
+.r3 .rank{background:rgba(217,146,91,.14);color:var(--bronze);border-color:rgba(217,146,91,.4)}
+.body{flex:1;min-width:0}
+.card h2{font-size:18px;font-weight:700;line-height:1.5;margin-bottom:6px}
+.card p{color:#c3c9d5;font-size:15px}
+.src{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent);text-decoration:none;word-break:break-all}
+.src:hover{text-decoration:underline}
+.tag{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;letter-spacing:.05em}
+@media (max-width:600px){.wrap{padding:32px 16px}h1{font-size:23px}.card{gap:14px;padding:18px}.rank{flex-basis:40px;height:40px;font-size:18px}.card h2{font-size:16px}}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+</style>
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="theme-color" content="#0f1115">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AIニュース">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="icon" type="image/png" href="../../icon-192.png">
+<meta name="robots" content="noindex,nofollow">
+<style id="pwa-tabs">
+body{padding-top:56px!important}
+#pwa-tabs-bar{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;gap:6px;padding:8px 10px;padding-top:calc(8px + env(safe-area-inset-top));background:rgba(15,17,21,.96);border-bottom:1px solid #2a2f3a;backdrop-filter:blur(8px)}
+#pwa-tabs-bar a{flex:1;text-align:center;padding:9px 4px;border-radius:10px;font-size:14px;font-weight:600;color:#9aa3b2;text-decoration:none;border:1px solid #2a2f3a;background:#171a21;white-space:nowrap}
+#pwa-tabs-bar a.on{color:#0f1115;background:#7aa2ff;border-color:#7aa2ff}
+#pwa-tabs-bar .s{display:none}@media(max-width:560px){#pwa-tabs-bar .l{display:none}#pwa-tabs-bar .s{display:inline}}
+</style><style id="pwa-arch">
+body{padding-top:92px!important}
+#pwa-tabs-bar{flex-wrap:wrap}
+#pwa-tabs-bar .day{flex-basis:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:#f5c451;padding:2px 2px 0}
+#pwa-tabs-bar .day a{flex:0 0 auto;padding:3px 10px;font-size:13px;color:#7aa2ff;background:transparent;border-color:#7aa2ff}
+</style></head>
+<body><nav id="pwa-tabs-bar"><a href="index.html" class="on" aria-current="page"><span class="l">フォロー中ダイジェスト</span><span class="s">フォロー中</span></a><a href="world.html"><span class="l">世界のAIニュース</span><span class="s">世界のAI</span></a><a href="jp.html"><span class="l">日本語圏の活用法</span><span class="s">日本語圏</span></a><a href="../../archive.html"><span class="l">過去の号</span><span class="s">過去の号</span></a><div class="day"><span>2026年10月17日（土） の号を表示中</span><a href="../../index.html">最新号へ戻る</a></div></nav>
+<div class="wrap">
+<header>
+<span class="eyebrow">FOLLOWING DIGEST</span>
+<h1>フォロー中アカウントのダイジェスト（10/17）</h1>
+<div class="sub">ホームタイムライン1ページ（10/16 0時〜10/17 8時、日本時間）から集計</div>
+</header>
+<h2 class="sec">AIエージェントの使い方 5選（フォロー中より）</h2><a class="agent" href="https://x.com/ClaudeCode_love/status/2110868069593833520" target="_blank" rel="noopener noreferrer"><b>1. @ClaudeCode_love</b> <span class="meta">♥497 · 保存 597</span><p>Claude CodeからMCPで呼び出し、Blenderの中に8つの役割を持つ「3D制作チーム」を置けるプラグインをScenarioがGitHubで公開した。</p></a><a class="agent" href="https://x.com/codexneo4/status/2110974210017501554" target="_blank" rel="noopener noreferrer"><b>2. @codexneo4</b> <span class="meta">♥321 · 保存 524</span><p>Codex 6.1に「Superpowers」を入れると無駄な修正が減って開発が速くなるとして、仕組みと導入方法を解説している。</p></a><a class="agent" href="https://x.com/claudecode84/status/2110929557520015787" target="_blank" rel="noopener noreferrer"><b>3. @claudecode84</b> <span class="meta">♥76 · 保存 94</span><p>Opus 5.5にREAの解析結果を読ませ、元のコードを1行もコピーせずに別の環境でソフトの機能を作り直す4ステップを紹介している。</p></a><a class="agent" href="https://x.com/claudecode84/status/2111021507799650584" target="_blank" rel="noopener noreferrer"><b>4. @claudecode84</b> <span class="meta">♥23 · 保存 38</span><p>Claude Codeの「ultracode」は最大1,000個のエージェントを動かせるが、週の利用枠がすぐ尽きるので少数から始めるのがコツだという。</p></a><a class="agent" href="https://x.com/ClaudeCode_love/status/2110983832010883091" target="_blank" rel="noopener noreferrer"><b>5. @ClaudeCode_love</b> <span class="meta">♥18 · 保存 12</span><p>海外のデザイン会社がサイト228ページをClaudeで4日で作り直し、旧URL116本を対応づけてリンク切れゼロにした事例を紹介している。</p></a><h2 class="sec" style="margin-top:28px">投稿件数（リポスト・返信を除く）</h2><table><tr><th>アカウント</th><th>10/16（前日）</th><th>10/17（今朝8時まで）</th></tr><tr><td>@elonmusk</td><td class="n">17</td><td>5</td></tr><tr><td>@woda_minato</td><td class="n">5</td><td>1</td></tr><tr><td>@sugawara11</td><td class="n">4</td><td>0</td></tr><tr><td>@ClaudeCode_love</td><td class="n">2</td><td>1</td></tr><tr><td>@codexneo4</td><td class="n">2</td><td>0</td></tr><tr><td>@claudecode84</td><td class="n">2</td><td>0</td></tr><tr><td>@Codestudiopjbk</td><td class="n">2</td><td>0</td></tr><tr><td>@ds_nakajima</td><td class="n">1</td><td>1</td></tr><tr><td>@nakaji_sub_</td><td class="n">0</td><td>0</td></tr><tr><td>@halukik_0520</td><td class="n">0</td><td>0</td></tr><tr><td>@jiro_aicompany</td><td class="n">0</td><td>0</td></tr><tr><td><b>合計</b></td><td class="n">35</td><td>8</td></tr></table><h2 class="sec">各アカウントで反響の大きかった投稿</h2><div class="who">@elonmusk</div><a class="post" href="https://x.com/elonmusk/status/2110913107094606330" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 10:57 · ♥717,862 · RP 85,886 · 表示 55,870,645</span><p>Turns out the future does have flying cars</p></a><a class="post" href="https://x.com/elonmusk/status/2110923689797808453" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 11:40 · ♥161,641 · RP 21,520 · 表示 6,867,256</span><p>（画像・動画のみの投稿）</p></a><div class="who">@woda_minato</div><a class="post" href="https://x.com/woda_minato/status/2110990933470957672" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 16:07 · ♥11 · RP 2 · 表示 3,780</span><p>ようやくここまでモデルきたんですが、ぶっちゃけ煌びやかな字幕デザインができるようになってるだけでフィラー、語尾、複数人同時喋りの字幕色変えなんかはまだ全然駄目ですね。台本読み込ませても正確じゃないです。手で編集したほうが速い。
+この辺り何故AIが駄目なのか今分析してます。</p></a><a class="post" href="https://x.com/woda_minato/status/2111082652967248253" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 22:11 · ♥3 · RP 1 · 表示 336</span><p>最終生き残るのは人間力ですね‥
+私もウラカタさん探してるので次回の募集再開楽しみにしてます！</p></a><div class="who">@sugawara11</div><a class="post" href="https://x.com/sugawara11/status/2110889476826480666" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 09:24 · ♥814 · RP 197 · 表示 35,479</span><p>税金の二重課税は探せばたくさんありますね。
+
+160億も取りすぎていたんですから…
+
+納得できないものは国民が声を上げないと、変わらないです。
+
+二重課税で納得できないものって何がありますか？
+  @YouTube</p></a><a class="post" href="https://x.com/sugawara11/status/2111010859791360368" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 17:26 · ♥104 · RP 2 · 表示 9,543</span><p>今日はSMG経営塾in大阪
+190名の経営者の方々に参加していただいてます。
+僕の講義は税務調査の対策と裏話、社長の仕事とは？などなど…
+実務に直結する経営講座です。
+やっぱり塾生さんとコミュニケーションが取れる講義がいいですね。</p></a><div class="who">@ClaudeCode_love</div><a class="post" href="https://x.com/ClaudeCode_love/status/2110868069593833520" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 07:59 · ♥497 · RP 37 · 表示 29,551</span><p>【海外で話題】
+Claude CodeからMCPで呼び出せて、
+Blenderの中に「3D制作チーム」を丸ごと置けるプラグインを、AI制作サービスのScenarioがGitHubで公開😳
+
+組み合わせは——Claude Code × Scenario MCP × Blender
+入っている役は8つ、主な中身はこう👇</p></a><a class="post" href="https://x.com/ClaudeCode_love/status/2110983832010883091" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 15:39 · ♥18 · RP 0 · 表示 3,392</span><p>【海外で話題】
+海外のデザイン会社が、Framerで作っていた自社サイトを丸ごと作り直して「サイト全体をClaudeで回している」と公開😳
+
+しかも、5月の前回は41ページに4週間・約300時間かかったのが、今回は228ページを4日で。
+旧URL116本を対応づけて、リンク切れは0。</p></a><div class="who">@codexneo4</div><a class="post" href="https://x.com/codexneo4/status/2110974210017501554" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 15:00 · ♥321 · RP 32 · 表示 34,231</span><p>Codex 6.1に「Superpowers」を
+必ず導入した方が良い‼️
+
+開発効率がマジで別次元になる。
+
+今まで何時間もかけていた開発が、
+無駄な修正を減らすだけで一気に効率化
+
+仕組みと導入方法を解説する👇</p></a><a class="post" href="https://x.com/codexneo4/status/2110946418362032384" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 13:10 · ♥264 · RP 10 · 表示 28,899</span><p>【速報】
+GPT-6が実質無制限で使える
+裏技が話題に🔥</p></a><div class="who">@claudecode84</div><a class="post" href="https://x.com/claudecode84/status/2110929557520015787" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 12:03 · ♥76 · RP 5 · 表示 7,958</span><p>Claude + REAの組み合わせが
+ヤバすぎる。
+
+元のソースコードを1行もコピーせずに、ソフトウェアの機能を再構築できる。
+
+Opus 5.5がREAの解析結果を読み取り、元のコードに触れない独立した環境で機能を再現する。
+
+やり方はたった4ステップ👇</p></a><a class="post" href="https://x.com/claudecode84/status/2111021507799650584" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 18:08 · ♥23 · RP 2 · 表示 5,179</span><p>Claude Codeの
+「ultracode」が強力すぎる。
+
+最大1,000個の
+AIエージェントを動かせる。
+
+ただし、
+使い方を間違えると
+週間の使用制限が一瞬で消える。
+
+重要なのは、
+最初から大量のエージェントを
+動かさないこと。
+
+使用量を抑えて始める方法がこちら👇</p></a><div class="who">@Codestudiopjbk</div><a class="post" href="https://x.com/Codestudiopjbk/status/2110874361611903084" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 08:24 · ♥33 · RP 3 · 表示 3,888</span><p>【速報｜ChatGPT・Codexの音声がアップデート】
+
+ついに来ました！
+OpenAIが音声の新モデル「GPT-Live-1.1」を公開！
+
+
+これ、地味に見えて
+日本語で話す人ほど効くアップデートです😳
+
+どう変わったか？解説していきます👇
+
+これまで
+「AIの音声＝英語がいちばん自然」</p></a><a class="post" href="https://x.com/Codestudiopjbk/status/2110994408841920575" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 16:21 · ♥7 · RP 0 · 表示 1,189</span><p>【アップデート｜Codex CLI 0.163.0】
+
+ついに来ました！
+Codexの作業中に「追加の一言」を送ると、すぐ効く。これが標準になりました！
+
+
+これ、地味に見えて
+毎日Codexを使う人ほど効くアップデートです😳
+どう変わったか？解説していきます👇
+
+これまで</p></a><div class="who">@ds_nakajima</div><a class="post" href="https://x.com/ds_nakajima/status/2110860969547374994" target="_blank" rel="noopener noreferrer"><span class="meta">10/16 07:30 · ♥56 · RP 0 · 表示 2,371</span><p>今日から3日間Code合宿なんですが、朝ごはん買いに行こうと歩いてたら、気付いたら松屋にインしてました。おはようございます。</p></a><a class="post" href="https://x.com/ds_nakajima/status/2111229876003078509" target="_blank" rel="noopener noreferrer"><span class="meta">10/17 07:56 · ♥6 · RP 0 · 表示 291</span><p>AI合宿2日目！</p></a><div class="who">@nakaji_sub_</div><div class="none">この期間の投稿はありませんでした。</div><div class="who">@halukik_0520</div><div class="none">この期間の投稿はありませんでした。</div><div class="who">@jiro_aicompany</div><div class="none">この期間の投稿はありませんでした。</div>
+<footer>毎朝8:08配信 · X Access</footer>
+</div>
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('../../sw.js')})}</script></body>
+</html>

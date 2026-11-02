@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>フォロー中アカウントのダイジェスト（10/21）</title>
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--panel2:#1d212a;--line:#2a2f3a;--text:#e8eaf0;--muted:#9aa3b2;--accent:#7aa2ff;--gold:#f5c451;--silver:#c9d1dc;--bronze:#d9925b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:48px 24px 32px}
+header{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.12em;color:var(--accent);background:rgba(122,162,255,.1);border:1px solid rgba(122,162,255,.25);padding:3px 10px;border-radius:999px;margin-bottom:14px}
+h1{font-size:30px;font-weight:700;letter-spacing:.01em;line-height:1.4}
+.sub{color:var(--muted);font-size:14px;margin-top:6px}
+.list{display:flex;flex-direction:column;gap:16px;list-style:none}
+.card{display:flex;gap:20px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#3c4456;transform:translateY(-2px)}
+.rank{flex:0 0 48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:#252a35;color:var(--text);border:1px solid var(--line)}
+.r1 .rank{background:rgba(245,196,81,.14);color:var(--gold);border-color:rgba(245,196,81,.4)}
+.r2 .rank{background:rgba(201,209,220,.12);color:var(--silver);border-color:rgba(201,209,220,.35)}
+.r3 .rank{background:rgba(217,146,91,.14);color:var(--bronze);border-color:rgba(217,146,91,.4)}
+.body{flex:1;min-width:0}
+.card h2{font-size:18px;font-weight:700;line-height:1.5;margin-bottom:6px}
+.card p{color:#c3c9d5;font-size:15px}
+.src{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent);text-decoration:none;word-break:break-all}
+.src:hover{text-decoration:underline}
+.tag{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;letter-spacing:.05em}
+@media (max-width:600px){.wrap{padding:32px 16px}h1{font-size:23px}.card{gap:14px;padding:18px}.rank{flex-basis:40px;height:40px;font-size:18px}.card h2{font-size:16px}}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+</style>
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="theme-color" content="#0f1115">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AIニュース">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="icon" type="image/png" href="../../icon-192.png">
+<meta name="robots" content="noindex,nofollow">
+<style id="pwa-tabs">
+body{padding-top:56px!important}
+#pwa-tabs-bar{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;gap:6px;padding:8px 10px;padding-top:calc(8px + env(safe-area-inset-top));background:rgba(15,17,21,.96);border-bottom:1px solid #2a2f3a;backdrop-filter:blur(8px)}
+#pwa-tabs-bar a{flex:1;text-align:center;padding:9px 4px;border-radius:10px;font-size:14px;font-weight:600;color:#9aa3b2;text-decoration:none;border:1px solid #2a2f3a;background:#171a21;white-space:nowrap}
+#pwa-tabs-bar a.on{color:#0f1115;background:#7aa2ff;border-color:#7aa2ff}
+#pwa-tabs-bar .s{display:none}@media(max-width:560px){#pwa-tabs-bar .l{display:none}#pwa-tabs-bar .s{display:inline}}
+</style><style id="pwa-arch">
+body{padding-top:92px!important}
+#pwa-tabs-bar{flex-wrap:wrap}
+#pwa-tabs-bar .day{flex-basis:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:#f5c451;padding:2px 2px 0}
+#pwa-tabs-bar .day a{flex:0 0 auto;padding:3px 10px;font-size:13px;color:#7aa2ff;background:transparent;border-color:#7aa2ff}
+</style></head>
+<body><nav id="pwa-tabs-bar"><a href="index.html" class="on" aria-current="page"><span class="l">フォロー中ダイジェスト</span><span class="s">フォロー中</span></a><a href="world.html"><span class="l">世界のAIニュース</span><span class="s">世界のAI</span></a><a href="jp.html"><span class="l">日本語圏の活用法</span><span class="s">日本語圏</span></a><a href="../../archive.html"><span class="l">過去の号</span><span class="s">過去の号</span></a><div class="day"><span>2026年10月21日（水） の号を表示中</span><a href="../../index.html">最新号へ戻る</a></div></nav>
+<div class="wrap">
+<header>
+<span class="eyebrow">FOLLOWING DIGEST</span>
+<h1>フォロー中アカウントのダイジェスト（10/21）</h1>
+<div class="sub">ホームタイムライン1ページ（10/20 0時〜10/21 8時、日本時間）から集計</div>
+</header>
+<h2 class="sec">AIエージェントの使い方 5選（フォロー中より）</h2><a class="agent" href="https://x.com/codexneo4/status/2112382363808522613" target="_blank" rel="noopener noreferrer"><b>1. @codexneo4</b> <span class="meta">♥335 · 保存 522</span><p>CodexにClaude Codeを操作させることで、AIエージェントを数日単位で動かし続ける仕組みと、その導入方法を解説している。</p></a><a class="agent" href="https://x.com/codexneo4/status/2112424660008878336" target="_blank" rel="noopener noreferrer"><b>2. @codexneo4</b> <span class="meta">♥120 · 保存 196</span><p>Codexのトークン消費を減らすための効率化テクニックを5つまとめて紹介している。</p></a><a class="agent" href="https://x.com/ClaudeCode_love/status/2112326178006761858" target="_blank" rel="noopener noreferrer"><b>3. @ClaudeCode_love</b> <span class="meta">♥126 · 保存 151</span><p>Claude Code・Codex・ゲームエンジンのGodot・3DモデルAIのTripoを組み合わせ、海外の開発者が3Dアクションゲームを5週間で作った構成を紹介している。</p></a><a class="agent" href="https://x.com/claudecode84/status/2112386820852129941" target="_blank" rel="noopener noreferrer"><b>4. @claudecode84</b> <span class="meta">♥84 · 保存 125</span><p>Anthropicが紹介するモデルの使い分けにならい、Opus 5.5を全作業に使わず3つのモデルに役割を分けて、Claude Codeの運用コストを下げる方法を解説している。</p></a><a class="agent" href="https://x.com/codexneo4/status/2112415515218251951" target="_blank" rel="noopener noreferrer"><b>5. @codexneo4</b> <span class="meta">♥50 · 保存 94</span><p>GPT-6 AstraとGitHubに無料のオープンソースツール10個を組み合わせ、自分のリポジトリの脆弱なコード、APIキーの流出、危険な依存関係をまとめて検出する使い方を紹介している。</p></a><h2 class="sec" style="margin-top:28px">投稿件数（リポスト・返信を除く）</h2><table><tr><th>アカウント</th><th>10/20（前日）</th><th>10/21（今朝8時まで）</th></tr><tr><td>@elonmusk</td><td class="n">6</td><td>11</td></tr><tr><td>@ds_nakajima</td><td class="n">6</td><td>1</td></tr><tr><td>@halukik_0520</td><td class="n">5</td><td>0</td></tr><tr><td>@sugawara11</td><td class="n">4</td><td>0</td></tr><tr><td>@codexneo4</td><td class="n">3</td><td>0</td></tr><tr><td>@claudecode84</td><td class="n">2</td><td>0</td></tr><tr><td>@ClaudeCode_love</td><td class="n">2</td><td>0</td></tr><tr><td>@Codestudiopjbk</td><td class="n">1</td><td>0</td></tr><tr><td>@nakaji_sub_</td><td class="n">0</td><td>1</td></tr><tr><td>@woda_minato</td><td class="n">0</td><td>0</td></tr><tr><td>@jiro_aicompany</td><td class="n">0</td><td>0</td></tr><tr><td><b>合計</b></td><td class="n">29</td><td>13</td></tr></table><h2 class="sec">各アカウントで反響の大きかった投稿</h2><div class="who">@elonmusk</div><a class="post" href="https://x.com/elonmusk/status/2112348601255125059" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 10:02 · ♥150,612 · RP 5,250 · 表示 7,125,399</span><p>Have to give the EU regulators credit where it’s due for making all Apple products use USB-C</p></a><a class="post" href="https://x.com/elonmusk/status/2112397041355866607" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 13:14 · ♥88,979 · RP 6,383 · 表示 3,888,257</span><p>They really don’t</p></a><div class="who">@ds_nakajima</div><a class="post" href="https://x.com/ds_nakajima/status/2112439632181014836" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 16:03 · ♥134 · RP 10 · 表示 29,658</span><p>60万円でぼったくりはさすがにかなしいね…
+
+まさにこのサイトがそうなんだけど、ここまでは誰でもできるけど、これを最後に稼働させられる状態まで持っていく仕上げが大変なんだけどな。</p></a><a class="post" href="https://x.com/ds_nakajima/status/2112584631665218009" target="_blank" rel="noopener noreferrer"><span class="meta">10/21 01:40 · ♥54 · RP 3 · 表示 21,874</span><p>全顧客情報が流出…Studio…</p></a><div class="who">@halukik_0520</div><a class="post" href="https://x.com/halukik_0520/status/2112366393018720377" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 11:12 · ♥41 · RP 2 · 表示 5,783</span><p>特別講師でCanva公式クリエイターのせいさん( @seidesign_8 )による「Canva×AI」セミナーがDesignNOWにて開催中！！
+
+朝から150名以上の参加者で大盛り上がりです...！！実際の操作もあってわかりやすすぎるし、そんなことできるの！？みたいな機能がどんどん出てくる。</p></a><a class="post" href="https://x.com/halukik_0520/status/2112499105612337450" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 20:00 · ♥20 · RP 3 · 表示 1,520</span><p>【2日間で約20作品。止まっていたポートフォリオが一気に埋まった】
+
+DesignNOWの受講生が、ポートフォリオを約1週間で完成させた報告です。</p></a><div class="who">@sugawara11</div><a class="post" href="https://x.com/sugawara11/status/2112492774520234328" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 19:35 · ♥1,174 · RP 169 · 表示 49,469</span><p>食料品の1%への減税は、始まってから2年後には元に戻りますが、2年後に戻らない可能性もあるんじゃないかな。
+
+高市さんは2年後に元に戻すと言っていますが、スーパーの買い物が2年後に7%値上げすることを、国民が許すのかな？</p></a><a class="post" href="https://x.com/sugawara11/status/2112477423166275971" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 18:34 · ♥213 · RP 20 · 表示 36,649</span><p>プルデンシャル生命金銭詐取で被害額は61億円、社員157名を処分というのが調査で明らかになったと、ニュースが出ていました。
+
+再発防止として支社の数を来年中に現在の半分以下にして、管理職を増やすことで営業現場に目が届くようにする。</p></a><div class="who">@codexneo4</div><a class="post" href="https://x.com/codexneo4/status/2112382363808522613" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 12:16 · ♥335 · RP 20 · 表示 62,380</span><p>これ考えた人、マジで天才
+
+CodexにClaude Codeを
+操作させることでAIエージェントを
+数日単位で稼働させる事が可能に❗️
+
+詳しく導入方法解説👇</p></a><a class="post" href="https://x.com/codexneo4/status/2112424660008878336" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 15:04 · ♥120 · RP 7 · 表示 13,961</span><p>Codexのトークン消費を減らしたい人、
+これ全部やってみてほしい。
+【Codex最強の効率化テクニック5選】</p></a><div class="who">@claudecode84</div><a class="post" href="https://x.com/claudecode84/status/2112386820852129941" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 12:33 · ♥84 · RP 12 · 表示 10,424</span><p>これ、
+Claude Codeの運用コストを
+大幅に削減できる可能性がある。
+
+Anthropicが紹介する
+モデルの使い分けを活用すれば、
+Opus 5.5をすべての作業に使う必要がなくなる。
+
+重要なのは、
+3つのモデルに役割を分担させること</p></a><a class="post" href="https://x.com/claudecode84/status/2112487419698426159" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 19:13 · ♥15 · RP 0 · 表示 2,234</span><p>Claude Opus 5.5で作られた動画が
+次々と話題になっている。
+
+でも、ほとんどが似たような動画。
+
+中央に大きな文字。
+背景にはグラデーション。
+最後にロゴが登場する。
+
+実は、プロ級の動画を作る秘訣は
+「魔法のプロンプト」ではない。
+
+重要なのは</p></a><div class="who">@ClaudeCode_love</div><a class="post" href="https://x.com/ClaudeCode_love/status/2112326178006761858" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 08:33 · ♥126 · RP 4 · 表示 12,896</span><p>【もはや事件】
+Claude CodeでGodotの3Dアクションゲームを5週間で作った海外の開発者が話題😳
+その構成は
+ーーー Claude Code + Codex + Godot + Tripo
+何がヤバいかというと👇
+
+・ラグナロクオンライン×モンハンのような3Dアクション『After the Wind』</p></a><a class="post" href="https://x.com/ClaudeCode_love/status/2112436403464503772" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 15:51 · ♥17 · RP 3 · 表示 4,344</span><p>【海外で話題｜Claude Codeが車の画面に】
+
+ついにここまで来た！
+海外の開発者が、BMWの画面にClaude Codeのエージェント4体を並べて動かして話題に！
+
+
+これ、ネタに見えて
+「機器のつなぎ込みをClaude Codeに任せる」頼み方のお手本です😳</p></a><div class="who">@Codestudiopjbk</div><a class="post" href="https://x.com/Codestudiopjbk/status/2112493282618216680" target="_blank" rel="noopener noreferrer"><span class="meta">10/20 19:37 · ♥15 · RP 1 · 表示 5,858</span><p>【Codexアプリに待望の機能】
+
+ついに来ました！
+Codexのデスクトップアプリで、前に送ったメッセージを編集できるようになりました！
+（Codex責任者のTiboさんが告知）
+
+これ、地味に見えて
+毎日の依頼が一段階ラクになるアップデートです😳
+
+どう変わったか？解説していきます👇
+
+これまで</p></a><div class="who">@nakaji_sub_</div><a class="post" href="https://x.com/nakaji_sub_/status/2112585046595174825" target="_blank" rel="noopener noreferrer"><span class="meta">10/21 01:41 · ♥0 · RP 0 · 表示 145</span><p>アフィカス思考だと、これを見た瞬間に「Studio 代替」「Studio 移行先」「Studio 代行」とかで記事を書いて集客します。</p></a><div class="who">@woda_minato</div><div class="none">この期間の投稿はありませんでした。</div><div class="who">@jiro_aicompany</div><div class="none">この期間の投稿はありませんでした。</div>
+<footer>毎朝8:08配信 · X Access</footer>
+</div>
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('../../sw.js')})}</script></body>
+</html>

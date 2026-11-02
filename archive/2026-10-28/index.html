@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>フォロー中アカウントのダイジェスト（10/28）</title>
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--panel2:#1d212a;--line:#2a2f3a;--text:#e8eaf0;--muted:#9aa3b2;--accent:#7aa2ff;--gold:#f5c451;--silver:#c9d1dc;--bronze:#d9925b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:48px 24px 32px}
+header{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.12em;color:var(--accent);background:rgba(122,162,255,.1);border:1px solid rgba(122,162,255,.25);padding:3px 10px;border-radius:999px;margin-bottom:14px}
+h1{font-size:30px;font-weight:700;letter-spacing:.01em;line-height:1.4}
+.sub{color:var(--muted);font-size:14px;margin-top:6px}
+.list{display:flex;flex-direction:column;gap:16px;list-style:none}
+.card{display:flex;gap:20px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#3c4456;transform:translateY(-2px)}
+.rank{flex:0 0 48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:#252a35;color:var(--text);border:1px solid var(--line)}
+.r1 .rank{background:rgba(245,196,81,.14);color:var(--gold);border-color:rgba(245,196,81,.4)}
+.r2 .rank{background:rgba(201,209,220,.12);color:var(--silver);border-color:rgba(201,209,220,.35)}
+.r3 .rank{background:rgba(217,146,91,.14);color:var(--bronze);border-color:rgba(217,146,91,.4)}
+.body{flex:1;min-width:0}
+.card h2{font-size:18px;font-weight:700;line-height:1.5;margin-bottom:6px}
+.card p{color:#c3c9d5;font-size:15px}
+.src{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent);text-decoration:none;word-break:break-all}
+.src:hover{text-decoration:underline}
+.tag{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;letter-spacing:.05em}
+@media (max-width:600px){.wrap{padding:32px 16px}h1{font-size:23px}.card{gap:14px;padding:18px}.rank{flex-basis:40px;height:40px;font-size:18px}.card h2{font-size:16px}}
+
+.sec{font-size:19px;margin:8px 0 14px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+</style>
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="theme-color" content="#0f1115">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AIニュース">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="icon" type="image/png" href="../../icon-192.png">
+<meta name="robots" content="noindex,nofollow">
+<style id="pwa-tabs">
+body{padding-top:56px!important}
+#pwa-tabs-bar{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;gap:6px;padding:8px 10px;padding-top:calc(8px + env(safe-area-inset-top));background:rgba(15,17,21,.96);border-bottom:1px solid #2a2f3a;backdrop-filter:blur(8px)}
+#pwa-tabs-bar a{flex:1;text-align:center;padding:9px 4px;border-radius:10px;font-size:14px;font-weight:600;color:#9aa3b2;text-decoration:none;border:1px solid #2a2f3a;background:#171a21;white-space:nowrap}
+#pwa-tabs-bar a.on{color:#0f1115;background:#7aa2ff;border-color:#7aa2ff}
+#pwa-tabs-bar .s{display:none}@media(max-width:560px){#pwa-tabs-bar .l{display:none}#pwa-tabs-bar .s{display:inline}}
+</style><style id="pwa-arch">
+body{padding-top:92px!important}
+#pwa-tabs-bar{flex-wrap:wrap}
+#pwa-tabs-bar .day{flex-basis:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:#f5c451;padding:2px 2px 0}
+#pwa-tabs-bar .day a{flex:0 0 auto;padding:3px 10px;font-size:13px;color:#7aa2ff;background:transparent;border-color:#7aa2ff}
+</style></head>
+<body><nav id="pwa-tabs-bar"><a href="index.html" class="on" aria-current="page"><span class="l">フォロー中ダイジェスト</span><span class="s">フォロー中</span></a><a href="world.html"><span class="l">世界のAIニュース</span><span class="s">世界のAI</span></a><a href="jp.html"><span class="l">日本語圏の活用法</span><span class="s">日本語圏</span></a><a href="../../archive.html"><span class="l">過去の号</span><span class="s">過去の号</span></a><div class="day"><span>2026年10月28日（水） の号を表示中</span><a href="../../index.html">最新号へ戻る</a></div></nav>
+<div class="wrap">
+<header>
+<span class="eyebrow">FOLLOWING DIGEST</span>
+<h1>フォロー中アカウントのダイジェスト（10/28）</h1>
+<div class="sub">ホームタイムライン1ページ（10/27 0時〜10/28 8時、日本時間）から集計</div>
+</header>
+<h2 class="sec">AIエージェントの使い方 5選（フォロー中より）</h2><a class="agent" href="https://x.com/AiAircle34052/status/2114910204072780126" target="_blank" rel="noopener noreferrer"><b>1. @AiAircle34052</b> <span class="meta">♥375 · 保存 491</span><p>ObsidianのCEO本人が、Claude CodeなどにObsidianを扱わせるためのスキル集をGitHubで無料公開しており、約5万スターを集めていると紹介している。</p></a><a class="agent" href="https://x.com/AiAircle34052/status/2114931847088283865" target="_blank" rel="noopener noreferrer"><b>2. @AiAircle34052</b> <span class="meta">♥177 · 保存 192</span><p>「いい感じの紹介ページを作って」だけだとAIっぽいサイトになりがちな問題に対し、MotionSitesが無料公開したWebデザイン用スキルをClaude Codeに入れて仕上がりを変える使い方を紹介している。</p></a><a class="agent" href="https://x.com/ds_nakajima/status/2114922759772090854" target="_blank" rel="noopener noreferrer"><b>3. @ds_nakajima</b> <span class="meta">♥231 · 保存 210</span><p>Agent.mdを置かせるだけでAIを高い再現性で指示に従わせられるという報告を受け、.claudeなどに紛れ込ませればダウンロードした人が気付けない危険があると注意を促している。</p></a><a class="agent" href="https://x.com/AiAircle34052/status/2114961039771255175" target="_blank" rel="noopener noreferrer"><b>4. @AiAircle34052</b> <span class="meta">♥20 · 保存 19</span><p>別々のターミナルで動かしているClaude Code同士が、コピペなしで直接メッセージを送り合い、片方で決まった変更をもう片方へ自分で伝えられる公式機能を紹介している。</p></a><a class="agent" href="https://x.com/ClaudeCode_aca/status/2115035785279971823" target="_blank" rel="noopener noreferrer"><b>5. @ClaudeCode_aca</b> <span class="meta">♥17 · 保存 10</span><p>NotionやGoogleカレンダーなどをClaude Codeから直接読み書きできる公式MCPサーバーを仕事別に20個まとめ、最初の1つは文章・ファイルの置き場をつなぐのがおすすめだと解説している。</p></a><h2 class="sec" style="margin-top:28px">投稿件数（リポスト・返信を除く）</h2><table><tr><th>アカウント</th><th>10/27（前日）</th><th>10/28（今朝8時まで）</th></tr><tr><td>@elonmusk</td><td class="n">23</td><td>6</td></tr><tr><td>@ds_nakajima</td><td class="n">5</td><td>0</td></tr><tr><td>@AiAircle34052</td><td class="n">5</td><td>0</td></tr><tr><td>@sugawara11</td><td class="n">4</td><td>1</td></tr><tr><td>@ClaudeCode_aca</td><td class="n">3</td><td>1</td></tr><tr><td>@codexneo4</td><td class="n">3</td><td>0</td></tr><tr><td>@claudecode84</td><td class="n">2</td><td>0</td></tr><tr><td>@Codestudiopjbk</td><td class="n">2</td><td>0</td></tr><tr><td>@halukik_0520</td><td class="n">1</td><td>0</td></tr><tr><td>@ClaudeCode_love</td><td class="n">1</td><td>0</td></tr><tr><td>@woda_minato</td><td class="n">1</td><td>0</td></tr><tr><td>@nakaji_sub_</td><td class="n">0</td><td>0</td></tr><tr><td>@jiro_aicompany</td><td class="n">0</td><td>0</td></tr><tr><td><b>合計</b></td><td class="n">50</td><td>8</td></tr></table><h2 class="sec">各アカウントで反響の大きかった投稿</h2><div class="who">@elonmusk</div><a class="post" href="https://x.com/elonmusk/status/2114765150431682772" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 02:04 · ♥117,809 · RP 10,876 · 表示 4,920,108</span><p>Remember when using the wrong pronoun got people canceled?
+
+That was dumb.</p></a><a class="post" href="https://x.com/elonmusk/status/2114854940711833669" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 08:01 · ♥105,157 · RP 5,288 · 表示 8,803,052</span><p>🎯😂</p></a><div class="who">@ds_nakajima</div><a class="post" href="https://x.com/ds_nakajima/status/2114922759772090854" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 12:30 · ♥231 · RP 21 · 表示 43,448</span><p>これめちゃくちゃおそろしい…
+
+Agent.mdを設置させるだけで、AIを指示に従わせられるのか…しかも再現性が高い。
+
+なんなら.claudeとかに入れてダウンロードさせたらステルスで気付けもしないのでは…</p></a><a class="post" href="https://x.com/ds_nakajima/status/2115000809289294045" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 17:41 · ♥80 · RP 7 · 表示 30,264</span><p>これ割と真剣に考えた方がよくて、1つだけパスキーを登録してると、もし何かでそのパスキーを使えなくなると詰むので、2つくらいパスキー作っておく方がよいですね。パスキー以外の認証方法いろいろ使えるようにすると、それはそれでまたリスクも上がるし。</p></a><div class="who">@AiAircle34052</div><a class="post" href="https://x.com/AiAircle34052/status/2114910204072780126" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 11:41 · ♥375 · RP 25 · 表示 29,123</span><p>【衝撃】
+Obsidian の CEO 本人が、Claude Code などで使えるスキル集を無料公開していて海外で話題😳　しかも GitHub で約5万スター。
+https://t.co/Ll6LBlPlUs
+
+中身は、Claude に Obsidian</p></a><a class="post" href="https://x.com/AiAircle34052/status/2114931847088283865" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 13:07 · ♥177 · RP 5 · 表示 13,012</span><p>【速報】これは見逃したらダメ🚨
+Claude Code に入れるだけで「AIっぽいサイト」を卒業できる Web デザインスキルを、MotionSites が無料公開👀
+https://t.co/IeeLC3jffD
+
+今まで：
+「いい感じの紹介ページを作って」→ どこかで見たようなAIっぽいサイト
+これから：</p></a><div class="who">@sugawara11</div><a class="post" href="https://x.com/sugawara11/status/2115199956437127653" target="_blank" rel="noopener noreferrer"><span class="meta">10/28 06:52 · ♥2,930 · RP 681 · 表示 123,464</span><p>東野圭吾さんの遺産約50億に対して、お二人の姉が約33億円の相続税を払うとの試算が出ていますね。
+
+50億×55％(最高税率)×1.2倍(兄弟姉妹は2割増)=33億
+という試算だと思います。
+
+この33億を原則として10ヶ月以内に現金一括納税です。
+
+物納制度はありますが、ほとんど認められません。</p></a><a class="post" href="https://x.com/sugawara11/status/2115026217753878859" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 19:22 · ♥527 · RP 51 · 表示 57,298</span><p>「会社員で起業を考えています。起業するか迷っているんですが、何か判断基準はありますか？」
+
+というような質問がたくさんくるので、僕なりの基準があり、24点満点の質問を作りましたので、気になる人は確認をしてみてください。
+
+①貯金額は生活費の何ヶ月分ありますか？</p></a><div class="who">@ClaudeCode_aca</div><a class="post" href="https://x.com/ClaudeCode_aca/status/2115035785279971823" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 20:00 · ♥17 · RP 1 · 表示 930</span><p>Claude Codeにつなげる公式のMCPサーバーを、
+仕事別に20個まとめました。
+
+MCPサーバーは、Claude Codeを
+ふだんのアプリとつなぐ入り口です。
+つなぐと、NotionやGoogleカレンダーの中身を
+Claude Codeが直接読んだり、作ったりできます。
+
+最初の1つは、
+文章・ファイルの置き場がおすすめです。 https://t.co/SuMQTNKT5z</p></a><a class="post" href="https://x.com/ClaudeCode_aca/status/2114914986908688557" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 12:00 · ♥16 · RP 1 · 表示 1,069</span><p>【Claude Code Mod】
+「気づいたら上限が来ていた」に、
+先に気づけるようにする画面です😳
+
+入力欄のすぐ上に、
+残りの使用量がずっと出ています。
+
+https://t.co/emuCwX3POZ
+
+映っているのは3つです↓↓
+・5時間の枠と7日の枠が、何%使われたか
+・それぞれ、あと何時間で戻るか https://t.co/mdhGgF0WlZ</p></a><div class="who">@codexneo4</div><a class="post" href="https://x.com/codexneo4/status/2114979157587493277" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 16:15 · ♥123 · RP 7 · 表示 52,314</span><p>GPTが使用制限を月額に変更した‼️
+全ユーザー待望の機能でしょ！ https://t.co/juzDjGX8Pp</p></a><a class="post" href="https://x.com/codexneo4/status/2114916494979301509" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 12:06 · ♥101 · RP 10 · 表示 23,200</span><p>「使用制限リセットカード」の売買機能が
+遂に実装される可能性が高い‼️</p></a><div class="who">@claudecode84</div><a class="post" href="https://x.com/claudecode84/status/2114933072206717060" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 13:11 · ♥16 · RP 1 · 表示 1,898</span><p>🚨 Claude Codeに、
+毎回同じ説明をしている人へ。
+
+繰り返す仕事の手順を
+「スキル」にしておけば、
+次回からの指示をぐっと減らせます👇</p></a><a class="post" href="https://x.com/claudecode84/status/2115038597099430191" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 20:11 · ♥5 · RP 0 · 表示 1,891</span><p>🚨 iPhoneで削除した写真、
+バックアップまで確認していますか？
+
+Claude Codeを使って、
+iPhoneのバックアップを調べたところ👇</p></a><div class="who">@Codestudiopjbk</div><a class="post" href="https://x.com/Codestudiopjbk/status/2114901654575456503" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 11:07 · ♥28 · RP 1 · 表示 2,795</span><p>【速報｜Codexに新モデル登場】
+
+ついに来ました！
+Codexで「GPT-6.1 Terra」が使えるようになりました！
+https://t.co/zkS3VB0ACG
+
+これ、地味に見えて
+毎日Codexを使う人ほど効くアップデートです😳
+
+どう変わったか？解説していきます👇
+
+これまで
+「軽い作業もSolで回して、利用枠がすぐ減る」 https://t.co/sEPXFgy5JB</p></a><a class="post" href="https://x.com/Codestudiopjbk/status/2114918768992538797" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 12:15 · ♥27 · RP 0 · 表示 3,161</span><p>【速報】
+Codexの新機能、もう探し回らなくてよくなった！！！！
+OpenAIが更新情報を1ページにまとめた
+ーーRelease Notes（リリースノート）。
+https://t.co/KcQITKK91O
+このページを開けば、
+・ChatGPTの更新
+・Codexの更新
+・APIの更新
+・製品ごとの絞り込み（Codexだけ表示） https://t.co/2IZ42FRLQM</p></a><div class="who">@halukik_0520</div><a class="post" href="https://x.com/halukik_0520/status/2114967561926525439" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 15:28 · ♥7 · RP 1 · 表示 1,108</span><p>こちら登壇させていただきます！最近の事例をたんまり話そうと思うので、参加される方はぜひお願いします！🙇</p></a><div class="who">@ClaudeCode_love</div><a class="post" href="https://x.com/ClaudeCode_love/status/2114854335867994533" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 07:59 · ♥9 · RP 0 · 表示 3,408</span><p>【海外で話題】
+海外の開発者が、Unreal Engineのエディタを一度も開かずに、Claude Codeだけで3Dアクションを試作したと話題😳
+その構成は
+ーーー Claude Code + Unreal Engine + Fabの素材
+何がヤバいかというと👇
+https://t.co/KH6omDDlb8
+・作ったのはゲーム開発者のDanny Limanseta</p></a><div class="who">@woda_minato</div><a class="post" href="https://x.com/woda_minato/status/2114902189596643509" target="_blank" rel="noopener noreferrer"><span class="meta">10/27 11:09 · ♥2 · RP 0 · 表示 262</span><p>というより、Query、SQL、think-cellのようなパワーユーザー機能で何が出来るかを知らない人はそもそもAIに出す指示がその水準に届きません。
+道具の上限を知らない人がAIを使っても、素人の成果物が速く量産されるだけなんですよね。</p></a><div class="who">@nakaji_sub_</div><div class="none">この期間の投稿はありませんでした。</div><div class="who">@jiro_aicompany</div><div class="none">この期間の投稿はありませんでした。</div>
+<footer>毎朝8:08配信 · X Access · 2026-10-28</footer>
+</div>
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('../../sw.js')})}</script></body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>フォロー中アカウントのダイジェスト（10/26）</title>
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--panel2:#1d212a;--line:#2a2f3a;--text:#e8eaf0;--muted:#9aa3b2;--accent:#7aa2ff;--gold:#f5c451;--silver:#c9d1dc;--bronze:#d9925b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:48px 24px 32px}
+header{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.12em;color:var(--accent);background:rgba(122,162,255,.1);border:1px solid rgba(122,162,255,.25);padding:3px 10px;border-radius:999px;margin-bottom:14px}
+h1{font-size:30px;font-weight:700;letter-spacing:.01em;line-height:1.4}
+.sub{color:var(--muted);font-size:14px;margin-top:6px}
+.list{display:flex;flex-direction:column;gap:16px;list-style:none}
+.card{display:flex;gap:20px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#3c4456;transform:translateY(-2px)}
+.rank{flex:0 0 48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:#252a35;color:var(--text);border:1px solid var(--line)}
+.r1 .rank{background:rgba(245,196,81,.14);color:var(--gold);border-color:rgba(245,196,81,.4)}
+.r2 .rank{background:rgba(201,209,220,.12);color:var(--silver);border-color:rgba(201,209,220,.35)}
+.r3 .rank{background:rgba(217,146,91,.14);color:var(--bronze);border-color:rgba(217,146,91,.4)}
+.body{flex:1;min-width:0}
+.card h2{font-size:18px;font-weight:700;line-height:1.5;margin-bottom:6px}
+.card p{color:#c3c9d5;font-size:15px}
+.src{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent);text-decoration:none;word-break:break-all}
+.src:hover{text-decoration:underline}
+.tag{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;letter-spacing:.05em}
+@media (max-width:600px){.wrap{padding:32px 16px}h1{font-size:23px}.card{gap:14px;padding:18px}.rank{flex-basis:40px;height:40px;font-size:18px}.card h2{font-size:16px}}
+
+.sec{font-size:19px;margin:8px 0 14px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+</style>
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="theme-color" content="#0f1115">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AIニュース">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="icon" type="image/png" href="../../icon-192.png">
+<meta name="robots" content="noindex,nofollow">
+<style id="pwa-tabs">
+body{padding-top:56px!important}
+#pwa-tabs-bar{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;gap:6px;padding:8px 10px;padding-top:calc(8px + env(safe-area-inset-top));background:rgba(15,17,21,.96);border-bottom:1px solid #2a2f3a;backdrop-filter:blur(8px)}
+#pwa-tabs-bar a{flex:1;text-align:center;padding:9px 4px;border-radius:10px;font-size:14px;font-weight:600;color:#9aa3b2;text-decoration:none;border:1px solid #2a2f3a;background:#171a21;white-space:nowrap}
+#pwa-tabs-bar a.on{color:#0f1115;background:#7aa2ff;border-color:#7aa2ff}
+#pwa-tabs-bar .s{display:none}@media(max-width:560px){#pwa-tabs-bar .l{display:none}#pwa-tabs-bar .s{display:inline}}
+</style><style id="pwa-arch">
+body{padding-top:92px!important}
+#pwa-tabs-bar{flex-wrap:wrap}
+#pwa-tabs-bar .day{flex-basis:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:#f5c451;padding:2px 2px 0}
+#pwa-tabs-bar .day a{flex:0 0 auto;padding:3px 10px;font-size:13px;color:#7aa2ff;background:transparent;border-color:#7aa2ff}
+</style></head>
+<body><nav id="pwa-tabs-bar"><a href="index.html" class="on" aria-current="page"><span class="l">フォロー中ダイジェスト</span><span class="s">フォロー中</span></a><a href="world.html"><span class="l">世界のAIニュース</span><span class="s">世界のAI</span></a><a href="jp.html"><span class="l">日本語圏の活用法</span><span class="s">日本語圏</span></a><a href="../../archive.html"><span class="l">過去の号</span><span class="s">過去の号</span></a><div class="day"><span>2026年10月26日（月） の号を表示中</span><a href="../../index.html">最新号へ戻る</a></div></nav>
+<div class="wrap">
+<header>
+<span class="eyebrow">FOLLOWING DIGEST</span>
+<h1>フォロー中アカウントのダイジェスト（10/26）</h1>
+<div class="sub">ホームタイムライン1ページ（10/25 0時〜10/26 7時、日本時間）から集計</div>
+</header>
+<h2 class="sec">AIエージェントの使い方 5選（フォロー中より）</h2><a class="agent" href="https://x.com/ClaudeCode_aca/status/2114311005937303569" target="_blank" rel="noopener noreferrer"><b>1. @ClaudeCode_aca</b> <span class="meta">♥48 · 保存 46</span><p>領収書の写真から経費表、毎朝のまとめ、議事録、ファイル名そろえなど、Claude Codeで一度作れば毎週使える「自分専用の道具」30個を5つの場面に分けて紹介している。</p></a><a class="agent" href="https://x.com/ClaudeCode_aca/status/2114114716662460886" target="_blank" rel="noopener noreferrer"><b>2. @ClaudeCode_aca</b> <span class="meta">♥37 · 保存 29</span><p>自分のフォルダを読んで入れるべきものを提案してくれるセットアップ用プラグインを使えば、Claude Codeに何を足すか自分で調べなくてよく、使わないものは後で外せばよいと解説している。</p></a><a class="agent" href="https://x.com/ClaudeCode_love/status/2114130315325391273" target="_blank" rel="noopener noreferrer"><b>3. @ClaudeCode_love</b> <span class="meta">♥25 · 保存 21</span><p>海外のデザインエンジニアが、画面の参考を集めるMobbinと立体画像を作るMagnificをClaude Codeに使わせ、Figmaを開かずに映画アプリの画面まで作った事例を紹介している。</p></a><a class="agent" href="https://x.com/ClaudeCode_aca/status/2114190211219370425" target="_blank" rel="noopener noreferrer"><b>4. @ClaudeCode_aca</b> <span class="meta">♥13 · 保存 10</span><p>Claude Codeのエージェントを300個同時に動かして調べ物をさせ、「確かめる役のAI」を置くことで、もっともらしい間違いを防いだ海外の事例を紹介している。</p></a><a class="agent" href="https://x.com/ClaudeCode_aca/status/2114477105702400029" target="_blank" rel="noopener noreferrer"><b>5. @ClaudeCode_aca</b> <span class="meta">♥0 · 保存 1</span><p>週報や議事録で毎回貼っている決まりは「スキル」にしておけば、入力欄に「/名前」と打つだけで同じやり方で動き、スキル自体もClaude Codeに書かせればよいと説明している。</p></a><h2 class="sec" style="margin-top:28px">投稿件数（リポスト・返信を除く）</h2><table><tr><th>アカウント</th><th>10/25（前日）</th><th>10/26（今朝8時まで）</th></tr><tr><td>@elonmusk</td><td class="n">19</td><td>7</td></tr><tr><td>@ClaudeCode_aca</td><td class="n">4</td><td>1</td></tr><tr><td>@sugawara11</td><td class="n">3</td><td>0</td></tr><tr><td>@codexneo4</td><td class="n">3</td><td>0</td></tr><tr><td>@claudecode84</td><td class="n">3</td><td>0</td></tr><tr><td>@halukik_0520</td><td class="n">1</td><td>0</td></tr><tr><td>@ClaudeCode_love</td><td class="n">1</td><td>0</td></tr><tr><td>@ds_nakajima</td><td class="n">0</td><td>0</td></tr><tr><td>@Codestudiopjbk</td><td class="n">0</td><td>0</td></tr><tr><td>@nakaji_sub_</td><td class="n">0</td><td>0</td></tr><tr><td>@woda_minato</td><td class="n">0</td><td>0</td></tr><tr><td>@jiro_aicompany</td><td class="n">0</td><td>0</td></tr><tr><td><b>合計</b></td><td class="n">34</td><td>8</td></tr></table><h2 class="sec">各アカウントで反響の大きかった投稿</h2><div class="who">@elonmusk</div><a class="post" href="https://x.com/elonmusk/status/2114063986744275011" target="_blank" rel="noopener noreferrer"><span class="meta">10/25 03:38 · ♥173,677 · RP 29,267 · 表示 10,110,752</span><p>Correct. 
+
+Using Starlink, a civilian commercial service, for offensive drone strikes to kill people has never been allowed, nor should it be. 
+
+Starshield, a different system, is controlled by the US government. What they decide to do is up to them. 
+
+Ukraine military violated</p></a><a class="post" href="https://x.com/elonmusk/status/2114184998651822094" target="_blank" rel="noopener noreferrer"><span class="meta">10/25 11:39 · ♥149,434 · RP 8,405 · 表示 9,655,429</span><p>We’re adding long press on like to send someone $1 via 𝕏 Money</p></a><div class="who">@ClaudeCode_aca</div><a class="post" href="https://x.com/ClaudeCode_aca/status/2114311005937303569" target="_blank" rel="noopener noreferrer"><span class="meta">10/25 20:00 · ♥48 · RP 1 · 表示 2,805</span><p>Claude Codeで作れる
+「自分専用の道具」を30個並べました。
+
+領収書の写真から経費表、
+毎朝のまとめ、議事録、ファイル名そろえ。
+どれも、一度作れば毎週使えます。
+
+質問するだけだと、
+来週も同じ作業を一から頼むことになります。
+
+30個を5つの場面に分けて
+1枚にまとめました👇 https://t.co/ja9HAEQxP0</p></a><a class="post" href="https://x.com/ClaudeCode_aca/status/2114114716662460886" target="_blank" rel="noopener noreferrer"><span class="meta">10/25 07:00 · ♥37 · RP 2 · 表示 2,974</span><p>Claude Codeに何を足すかは、
+自分で調べなくていい。
+
+Xで20万人が見た
+セットアップ用のプラグインは、
+自分のフォルダを読んで、
+入れるものを提案してくれます。
+
+ただし、5分で終わるのは導入だけ。
+使わないものは、入れたあとに外します。
+
+提案される4種類を1枚にまとめました👇 https://t.co/0i020HeG52</p></a><div class="who">@sugawara11</div><a class="post" href="https://x.com/sugawara11/status/2114304462021906816" target="_blank" rel="noopener noreferrer"><span class="meta">10/25 19:34 · ♥1,632 · RP 159 · 表示 138,293</span><p>正直な話をすると、経営者になってお金持ちになる確率は少なくて、さらにそれを継続させられる人はもっと少ないです。
+
+経営は成功か自己破産のどちらかで、中途半端は基本的にありません。
+
+だからある意味、ハイリスクハイリターンのギャンブルみたいなもの。</p></a><a class="post" href="https://x.com/sugawara11/status/2114304210300760236" target="_blank" rel="noopener noreferrer"><span class="meta">10/25 19:33 · ♥568 · RP 52 · 表示 28,596</span><p>何かピンチな時ほど人は、人のせいにしたがるので、そこで本性が出ます。
+
+調子がいいときはいいけど、調子が悪くなった時が大切です。
+
+会社を経営する限りは、一緒に仕事をしてくれる人たちがいます。</p></a><div class="who">@codexneo4</div><a class="post" href="https://x.com/codexneo4/status/2114192222446903729" target="_blank" rel="noopener noreferrer"><span class="meta">10/25 12:08 · ♥49 · RP 2 · 表示 7,418</span><p>Kimi K3.1 Proがガチで化け物すぎるwww
+GPT-6 Astraを大きく上回る性能に進化して🔥
+👇
+GPT-6 Astraに対しては7.5ポイントも
+リードしている計算になる。
+
+しかも今回のKimi、
+単にコードを書くだけのAIじゃない
+
+・複雑なソフトウェア開発
+・AIエージェントによる自律的なタスク実行
+・3Dモデリング</p></a><a class="post" href="https://x.com/codexneo4/status/2114252368640352666" target="_blank" rel="noopener noreferrer"><span class="meta">10/25 16:07 · ♥22 · RP 2 · 表示 3,149</span><p>CodexがSkillsやAIエージェントの
+使い勝手を進化させてるけど終わったかも
+👇
+Tencentの「WorkBuddy」はSkillsそのものを
+販売して稼げる様になってる</p></a><div class="who">@claudecode84</div><a class="post" href="https://x.com/claudecode84/status/2114311427439878446" target="_blank" rel="noopener noreferrer"><span class="meta">10/25 20:01 · ♥23 · RP 1 · 表示 3,211</span><p>これ、マジでもったいない。
+
+Claudeで「第二の脳」を作る人の多くが、
+面白くなる直前でやめてしまう。👇</p></a><a class="post" href="https://x.com/claudecode84/status/2114283174826242305" target="_blank" rel="noopener noreferrer"><span class="meta">10/25 18:09 · ♥8 · RP 0 · 表示 1,296</span><p>Claude Codeで動画を作るなら、
+保存しておきたい20選。
+
+企画からアニメーション、
+3D、音声、字幕、書き出しまで。
+
+Opus 5.5と組み合わせたい
+モーション制作の道具をまとめた👇</p></a><div class="who">@halukik_0520</div><a class="post" href="https://x.com/halukik_0520/status/2114288986688733674" target="_blank" rel="noopener noreferrer"><span class="meta">10/25 18:32 · ♥9 · RP 1 · 表示 1,074</span><p>🎃あなたなら、どんなハロウィンの招待状を作る？
+
+10/26(月)20:00〜の「クリエイターキッチン」に向けて、みんなの招待状を募集します！！
+
+参加方法はこの2つ👇
+① Adobe Fireflyで招待状を作る
+②#クリエイターキッチン をつけてXに投稿！
+
+かわいい系も、ちょっと怖い系も自由👻</p></a><div class="who">@ClaudeCode_love</div><a class="post" href="https://x.com/ClaudeCode_love/status/2114130315325391273" target="_blank" rel="noopener noreferrer"><span class="meta">10/25 08:02 · ♥25 · RP 0 · 表示 4,702</span><p>【海外で話題】
+Figmaを一度も開かずに、この映画アプリの画面までできたと話題😳
+作ったのは海外のデザインエンジニア。デザインも実装もClaude Codeの中だけで進めた
+https://t.co/f9AcovgPEW
+Claude Codeに使わせたのは、画面の参考を集めるMobbinと、立体の画像を作るMagnific</p></a><div class="who">@ds_nakajima</div><div class="none">この期間の投稿はありませんでした。</div><div class="who">@Codestudiopjbk</div><div class="none">この期間の投稿はありませんでした。</div><div class="who">@nakaji_sub_</div><div class="none">この期間の投稿はありませんでした。</div><div class="who">@woda_minato</div><div class="none">この期間の投稿はありませんでした。</div><div class="who">@jiro_aicompany</div><div class="none">この期間の投稿はありませんでした。</div>
+<footer>毎朝8:08配信 · X Access</footer>
+</div>
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('../../sw.js')})}</script></body>
+</html>
