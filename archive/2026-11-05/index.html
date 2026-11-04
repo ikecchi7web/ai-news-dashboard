@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>フォロー中アカウントのダイジェスト（11/5）</title>
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--panel2:#1d212a;--line:#2a2f3a;--text:#e8eaf0;--muted:#9aa3b2;--accent:#7aa2ff;--gold:#f5c451;--silver:#c9d1dc;--bronze:#d9925b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:48px 24px 32px}
+header{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.12em;color:var(--accent);background:rgba(122,162,255,.1);border:1px solid rgba(122,162,255,.25);padding:3px 10px;border-radius:999px;margin-bottom:14px}
+h1{font-size:30px;font-weight:700;letter-spacing:.01em;line-height:1.4}
+.sub{color:var(--muted);font-size:14px;margin-top:6px}
+.list{display:flex;flex-direction:column;gap:16px;list-style:none}
+.card{display:flex;gap:20px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#3c4456;transform:translateY(-2px)}
+.rank{flex:0 0 48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:#252a35;color:var(--text);border:1px solid var(--line)}
+.r1 .rank{background:rgba(245,196,81,.14);color:var(--gold);border-color:rgba(245,196,81,.4)}
+.r2 .rank{background:rgba(201,209,220,.12);color:var(--silver);border-color:rgba(201,209,220,.35)}
+.r3 .rank{background:rgba(217,146,91,.14);color:var(--bronze);border-color:rgba(217,146,91,.4)}
+.body{flex:1;min-width:0}
+.card h2{font-size:18px;font-weight:700;line-height:1.5;margin-bottom:6px}
+.card p{color:#c3c9d5;font-size:15px}
+.src{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent);text-decoration:none;word-break:break-all}
+.src:hover{text-decoration:underline}
+.tag{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;letter-spacing:.05em}
+@media (max-width:600px){.wrap{padding:32px 16px}h1{font-size:23px}.card{gap:14px;padding:18px}.rank{flex-basis:40px;height:40px;font-size:18px}.card h2{font-size:16px}}
+
+.sec{font-size:19px;margin:8px 0 14px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+</style>
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="theme-color" content="#0f1115">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AIニュース">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="icon" type="image/png" href="../../icon-192.png">
+<meta name="robots" content="noindex,nofollow">
+<style id="pwa-tabs">
+body{padding-top:56px!important}
+#pwa-tabs-bar{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;gap:6px;padding:8px 10px;padding-top:calc(8px + env(safe-area-inset-top));background:rgba(15,17,21,.96);border-bottom:1px solid #2a2f3a;backdrop-filter:blur(8px)}
+#pwa-tabs-bar a{flex:1;text-align:center;padding:9px 4px;border-radius:10px;font-size:14px;font-weight:600;color:#9aa3b2;text-decoration:none;border:1px solid #2a2f3a;background:#171a21;white-space:nowrap}
+#pwa-tabs-bar a.on{color:#0f1115;background:#7aa2ff;border-color:#7aa2ff}
+#pwa-tabs-bar .s{display:none}@media(max-width:560px){#pwa-tabs-bar .l{display:none}#pwa-tabs-bar .s{display:inline}}
+</style><style id="pwa-arch">
+body{padding-top:92px!important}
+#pwa-tabs-bar{flex-wrap:wrap}
+#pwa-tabs-bar .day{flex-basis:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:#f5c451;padding:2px 2px 0}
+#pwa-tabs-bar .day a{flex:0 0 auto;padding:3px 10px;font-size:13px;color:#7aa2ff;background:transparent;border-color:#7aa2ff}
+</style></head>
+<body><nav id="pwa-tabs-bar"><a href="index.html" class="on" aria-current="page"><span class="l">フォロー中ダイジェスト</span><span class="s">フォロー中</span></a><a href="world.html"><span class="l">世界のAIニュース</span><span class="s">世界のAI</span></a><a href="jp.html"><span class="l">日本語圏の活用法</span><span class="s">日本語圏</span></a><a href="../../archive.html"><span class="l">過去の号</span><span class="s">過去の号</span></a><div class="day"><span>2026年11月5日（木） の号を表示中</span><a href="../../index.html">最新号へ戻る</a></div></nav>
+<div class="wrap">
+<header>
+<span class="eyebrow">FOLLOWING DIGEST</span>
+<h1>フォロー中アカウントのダイジェスト（11/5）</h1>
+<div class="sub">ホームタイムライン1ページ（11/4 0時〜11/5 8時、日本時間）から集計</div>
+</header>
+<h2 class="sec">AIエージェントの使い方 5選（フォロー中より）</h2><a class="agent" href="https://x.com/claudecode84/status/2117815552060387480" target="_blank" rel="noopener noreferrer"><b>1. @claudecode84</b> <span class="meta">♥151 · 保存 201</span><p>Claude Codeを作った本人が実際に使っている個人用セットアップを紹介し、その軸が驚くほどシンプルだと解説している。</p></a><a class="agent" href="https://x.com/ClaudeCode_love/status/2117757968599097421" target="_blank" rel="noopener noreferrer"><b>2. @ClaudeCode_love</b> <span class="meta">♥107 · 保存 119</span><p>声・字幕・3Dから書き出しまで、コードだけで動画を作れる無料リポジトリ14個をまとめ、Opus 5.5に渡して使う方法を紹介している。</p></a><a class="agent" href="https://x.com/codexneo4/status/2117875995592335428" target="_blank" rel="noopener noreferrer"><b>3. @codexneo4</b> <span class="meta">♥47 · 保存 63</span><p>Codexの基本機能7つと拡張ツール5つを合わせた12の効率化テクニックをまとめている。</p></a><a class="agent" href="https://x.com/claudecode84/status/2117902647105888760" target="_blank" rel="noopener noreferrer"><b>4. @claudecode84</b> <span class="meta">♥33 · 保存 43</span><p>Claude Codeのトークン消費を減らすため、CLAUDE.mdに入れる6行のルールで無駄な読み込みや長すぎる応答を抑える方法を紹介している。</p></a><a class="agent" href="https://x.com/ClaudeCode_aca/status/2117934892743028989" target="_blank" rel="noopener noreferrer"><b>5. @ClaudeCode_aca</b> <span class="meta">♥28 · 保存 28</span><p>Claude Codeの上限がすぐ来る人向けに、Codexの公式プラグインを入れて量の多い作業をCodex側に回し、Claude Code側の消費を抑える使い方を紹介している。</p></a><h2 class="sec" style="margin-top:28px">投稿件数（リポスト・返信を除く）</h2><table><tr><th>アカウント</th><th>11/4（前日）</th><th>11/5（今朝8時まで）</th></tr><tr><td>@elonmusk</td><td class="n">15</td><td>5</td></tr><tr><td>@sugawara11</td><td class="n">4</td><td>0</td></tr><tr><td>@ClaudeCode_aca</td><td class="n">3</td><td>1</td></tr><tr><td>@ClaudeCode_love</td><td class="n">3</td><td>0</td></tr><tr><td>@Codestudiopjbk</td><td class="n">3</td><td>0</td></tr><tr><td>@codexneo4</td><td class="n">3</td><td>0</td></tr><tr><td>@halukik_0520</td><td class="n">3</td><td>0</td></tr><tr><td>@ds_nakajima</td><td class="n">3</td><td>0</td></tr><tr><td>@AiAircle34052</td><td class="n">2</td><td>0</td></tr><tr><td>@claudecode84</td><td class="n">2</td><td>0</td></tr><tr><td>@ichiaimarketer</td><td class="n">2</td><td>0</td></tr><tr><td>@woda_minato</td><td class="n">2</td><td>0</td></tr><tr><td>@AI_masaou</td><td class="n">1</td><td>0</td></tr><tr><td>@swipecard7web</td><td class="n">0</td><td>0</td></tr><tr><td>@jiro_aicompany</td><td class="n">0</td><td>0</td></tr><tr><td>@nakaji_sub_</td><td class="n">0</td><td>0</td></tr><tr><td><b>合計</b></td><td class="n">46</td><td>6</td></tr></table><h2 class="sec">各アカウントで反響の大きかった投稿</h2><div class="who">@elonmusk</div><a class="post" href="https://x.com/elonmusk/status/2117862767831159287" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 15:13 · ♥403,654 · RP 24,674 · 表示 13,358,135</span><p>Guess my election-interfering space lasers didn’t work this time 🤷‍♂️</p></a><a class="post" href="https://x.com/elonmusk/status/2117862462976594112" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 15:12 · ♥213,820 · RP 13,068 · 表示 9,389,718</span><p>Data centers in space looking pretty appealing right now</p></a><div class="who">@sugawara11</div><a class="post" href="https://x.com/sugawara11/status/2117871676813709386" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 15:48 · ♥2,267 · RP 570 · 表示 79,702</span><p>この相続税の問題が悪い方向に進む恐れがあります。
+
+片山財務大臣が、非上場株の相続税の評価方法見直しに関して「有識者会議の議論は一旦停止する」と表明。</p></a><a class="post" href="https://x.com/sugawara11/status/2117934631974490136" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 19:59 · ♥1,154 · RP 64 · 表示 263,214</span><p>ずっと思ってたオーダースーツ屋さんの、闇だと思う部分について話します。
+
+オーダースーツ事業って提携をすれば意外と参入障壁が低いので、元保険営業マンの人でオーダースーツ事業をやる人がちょこちょこいるんですが、グレーというかブラックだと思ってることがあります。</p></a><div class="who">@ClaudeCode_aca</div><a class="post" href="https://x.com/ClaudeCode_aca/status/2117934892743028989" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 20:00 · ♥28 · RP 3 · 表示 2,004</span><p>Claude Codeの上限がすぐ来る人は、
+Codexの公式プラグインを入れてください。
+
+量の多い作業をCodexに回すと、
+Claude Code側で使うのは、
+頼んで受け取るやりとりの分だけになります。
+Codexが動いた分は、Codex側の上限に入るからです。
+
+使い方は、Claude Codeの会話で https://t.co/fXyoQhw4Ls https://t.co/ki7K7pNbXw</p></a><a class="post" href="https://x.com/ClaudeCode_aca/status/2117738602432266682" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 07:00 · ♥14 · RP 2 · 表示 1,377</span><p>AIに仕事を任せたいけど、
+勝手なことをされるのが怖い人へ。
+
+DeNAの南場智子さんは、
+社員として登録されたAI「lemonくん」と、
+Slackで仕事を進めているそうです😳
+
+・やることの管理、リマインド、情報集めを任せる
+・チャットを読んで、AIが自分から仕事を引き受けることもある https://t.co/aVY812Hz7f https://t.co/TRTSLUheNW</p></a><div class="who">@ClaudeCode_love</div><a class="post" href="https://x.com/ClaudeCode_love/status/2117757968599097421" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 08:17 · ♥107 · RP 5 · 表示 10,346</span><p>14個の無料リポジトリで、声・字幕・3Dから書き出しまで、動画をまるごとコードだけで作れる😳
+
+海外の作者が「AIの動画が安っぽく見えるなら、Opus 5.5にこれを渡して」とまとめた一覧。
+https://t.co/1GZPY2RtAe https://t.co/IK8g1ghjww</p></a><a class="post" href="https://x.com/ClaudeCode_love/status/2117835479232172538" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 13:25 · ♥13 · RP 0 · 表示 4,249</span><p>えええ！！！
+海外の開発者がClaude Codeで作ったラリーゲームの映像が、市販のゲームにしか見えないと話題🔥
+https://t.co/0bMEY8J1yh
+
+映像の最後に出る数字は、コード8万1,000行。
+
+「AIが書いて、開発者1人が指揮した」 https://t.co/uTp8mpB0Vm</p></a><div class="who">@Codestudiopjbk</div><a class="post" href="https://x.com/Codestudiopjbk/status/2117960560180707751" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 21:42 · ♥10 · RP 3 · 表示 1,536</span><p>「ターミナルの起動が、約1秒から50ミリ秒になった」
+OpenAIで働く @garymlin さんが、社内で覚えたCodexへの頼み方を共有してた😳
+これ日本語でどういう依頼文かと言うと👇
+「シェル（zshやbashなど）の起動を計測して、遅い原因を見つけて、
+今の機能を失わないように直して」
+という依頼文。 https://t.co/8PLFxEtVO2 https://t.co/srNEK4rn0f</p></a><a class="post" href="https://x.com/Codestudiopjbk/status/2117810314024718722" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 11:45 · ♥9 · RP 1 · 表示 1,490</span><p>Unity公式のCodexプラグインで、ゲーム作りの工程を依頼文で進められる😳
+Unityが、4つの場面の実演動画を出してた👇
+https://t.co/E3upZuT8he
+OpenAIのプラグイン一覧から入れられる、Unity Technologies製の公式プラグイン。
+
+CodexにUnityでのゲーム作りを教えるスキル集👇 https://t.co/srNEK4rn0f</p></a><div class="who">@codexneo4</div><a class="post" href="https://x.com/codexneo4/status/2117875995592335428" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 16:06 · ♥47 · RP 2 · 表示 5,381</span><p>Codex でこの12効率化テクニックを
+半分でも使えば効率が一気に倍増する
+
+作業を速くしたい人向けに
+「基本機能7つ＋拡張ツール5つ」を
+まとめたからブクマしといて👇 https://t.co/24XE199eVL</p></a><a class="post" href="https://x.com/codexneo4/status/2117815095111897601" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 12:04 · ♥35 · RP 3 · 表示 7,131</span><p>🚨 ChatGPT Plusにも「Dots」が来るかも‼️
+👇
+GPT-6.1 Terraがカギを握る可能性がある</p></a><div class="who">@halukik_0520</div><a class="post" href="https://x.com/halukik_0520/status/2117814104232800748" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 12:00 · ♥58 · RP 2 · 表示 13,123</span><p>【社内デザイナーが辞めて2ヶ月。マーケ担当がAIで全部回している】
+
+8月にデザイナーが退職。それから、WebやSNSのバナー、LINEのリッチメニュー、LPのトップ画像、広告まで、全部マーケ担当のDesignNOW受講生が、AI（Codex）と講座で配っているデザインのスキルで作っています。 https://t.co/frbgtw22tE</p></a><a class="post" href="https://x.com/halukik_0520/status/2117782992097874233" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 09:56 · ♥24 · RP 0 · 表示 2,012</span><p>そうなんです！！笑
+
+DesignNOW、どんどんアップデートしてるので鬼のように機能増えてます。LINEスタンプは、一括で申請可能なzipファイルまで自動で出してくれるので結構便利です🤫 https://t.co/dqfw6IwiB0</p></a><div class="who">@ds_nakajima</div><a class="post" href="https://x.com/ds_nakajima/status/2117920441440600565" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 19:02 · ♥44 · RP 1 · 表示 2,953</span><p>自治体や商工会からの講演依頼も増えてます。最近多いテーマは「会社にAIを安全に導入するコツ」のようなもの。このあたりもご依頼あれば、お気軽にDMくださいー。どこでも行きます🙌</p></a><a class="post" href="https://x.com/ds_nakajima/status/2117919999868469438" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 19:00 · ♥28 · RP 1 · 表示 2,510</span><p>病院、税理士法人、ピラティス店舗、法人研修会社など。AI導入支援の問い合わせたくさんもらえてありがたい限り！いろんな人の力も借りながらがんばってるので、セキュアなAI導入を求めている方はお気軽にお問い合わせくださいませ。</p></a><div class="who">@AiAircle34052</div><a class="post" href="https://x.com/AiAircle34052/status/2117862910571749671" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 15:14 · ♥8 · RP 0 · 表示 859</span><p>実は、Anthropic の Claude in Excel で財務モデルを作らせる時に一番大事なのは、一度に頼まず、順番に分けて頼むことです。
+「モルガン・スタンレーで財務3表のモデルを何度も手作業で作った」という投稿者が、5段階のやり方を公開して話題😳
+https://t.co/NoLTXpCIaF
+それがこちら👇
+①</p></a><a class="post" href="https://x.com/AiAircle34052/status/2117800499009491444" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 11:06 · ♥5 · RP 0 · 表示 961</span><p>【事件】
+ソースコードが一度も公開されていない『バトルフィールド1942』の無料体験版を、Claude Code がブラウザで遊べるようにしてしまった動画が話題😳しかも、動画を投稿した本人は6か月前に同じ移植に挑んで、一度諦めていました。
+https://t.co/cNp7YQQrDY
+・Claude Code</p></a><div class="who">@claudecode84</div><a class="post" href="https://x.com/claudecode84/status/2117815552060387480" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 12:05 · ♥151 · RP 15 · 表示 15,848</span><p>Claude Codeを作った本人は、
+どう使っているのか。
+
+開発者個人的なセットアップ。
+
+その軸は、驚くほどシンプルです👇 https://t.co/RfO0T7cyTb https://t.co/6oDJ2w0Hmi</p></a><a class="post" href="https://x.com/claudecode84/status/2117902647105888760" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 17:51 · ♥33 · RP 3 · 表示 4,015</span><p>Claude Codeのトークン消費、
+まず見直すならCLAUDE.md。
+
+たった6行のルールで、
+無駄な読み込みや
+長すぎる応答を減らせます👇 https://t.co/6oDJ2w0Hmi</p></a><div class="who">@ichiaimarketer</div><a class="post" href="https://x.com/ichiaimarketer/status/2117758723028406322" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 08:20 · ♥28 · RP 3 · 表示 3,163</span><p>明日21時、まとさん（@MatoToushi）とBrain出します🔥
+テーマは『AIでつくるLPの教科書』です！！！！！
+マジで3ヶ月書き続けてためちゃくちゃ力作😏精度やばいですマジで。AIのX界隈だとどこよりも圧倒的に高い自信ある。 https://t.co/FtgBzV8sA0</p></a><a class="post" href="https://x.com/ichiaimarketer/status/2117865800057209260" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 15:25 · ♥22 · RP 1 · 表示 2,276</span><p>今回のBrainについてる『LPのAI社員』
+自分とまとさん（@MatoToushi）が
+が３ヶ月、毎日AIにダメ出しし続けて作りました🤣
+
+何がヤバいかというと👇
+・指示と確認のメッセージ 249件
+・自分で描いて送った修正画像 126枚
+・画像の生成 約580回
+・テスト 14ラウンド https://t.co/HXZG6Lra11 https://t.co/ERoTtU5MWp</p></a><div class="who">@woda_minato</div><a class="post" href="https://x.com/woda_minato/status/2117905112643612825" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 18:01 · ♥3 · RP 1 · 表示 161</span><p>これ一番やばいの時計とワインセラーなのでは https://t.co/4WHlUkUsNK</p></a><a class="post" href="https://x.com/woda_minato/status/2117870913635180730" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 15:45 · ♥0 · RP 0 · 表示 115</span><p>うちの社員、あんなにスマホすら苦手だったのにAIエージェント教えたらゴリゴリ自走し始めて、事務作業全部無くなって、余裕出てきたのか自分で考えてプラスアルファの提案もしてくるようになった。</p></a><div class="who">@AI_masaou</div><a class="post" href="https://x.com/AI_masaou/status/2117956225677889561" target="_blank" rel="noopener noreferrer"><span class="meta">11/4 21:24 · ♥18 · RP 1 · 表示 1,564</span><p>https://t.co/K71kPQdT4g</p></a>
+<footer>毎朝8:08配信 · X Access · フォロー中ダイジェスト · 2026-11-05</footer>
+</div>
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('../../sw.js')})}</script></body>
+</html>
