@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本日のAIニュース上位5選（11/11）</title>
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--panel2:#1d212a;--line:#2a2f3a;--text:#e8eaf0;--muted:#9aa3b2;--accent:#7aa2ff;--gold:#f5c451;--silver:#c9d1dc;--bronze:#d9925b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:48px 24px 32px}
+header{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.12em;color:var(--accent);background:rgba(122,162,255,.1);border:1px solid rgba(122,162,255,.25);padding:3px 10px;border-radius:999px;margin-bottom:14px}
+h1{font-size:30px;font-weight:700;letter-spacing:.01em;line-height:1.4}
+.sub{color:var(--muted);font-size:14px;margin-top:6px}
+.list{display:flex;flex-direction:column;gap:16px;list-style:none}
+.card{display:flex;gap:20px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#3c4456;transform:translateY(-2px)}
+.rank{flex:0 0 48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:#252a35;color:var(--text);border:1px solid var(--line)}
+.r1 .rank{background:rgba(245,196,81,.14);color:var(--gold);border-color:rgba(245,196,81,.4)}
+.r2 .rank{background:rgba(201,209,220,.12);color:var(--silver);border-color:rgba(201,209,220,.35)}
+.r3 .rank{background:rgba(217,146,91,.14);color:var(--bronze);border-color:rgba(217,146,91,.4)}
+.body{flex:1;min-width:0}
+.card h2{font-size:18px;font-weight:700;line-height:1.5;margin-bottom:6px}
+.card p{color:#c3c9d5;font-size:15px}
+.src{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent);text-decoration:none;word-break:break-all}
+.src:hover{text-decoration:underline}
+.tag{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;letter-spacing:.05em}
+@media (max-width:600px){.wrap{padding:32px 16px}h1{font-size:23px}.card{gap:14px;padding:18px}.rank{flex-basis:40px;height:40px;font-size:18px}.card h2{font-size:16px}}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+</style>
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="theme-color" content="#0f1115">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AIニュース">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="icon" type="image/png" href="../../icon-192.png">
+<meta name="robots" content="noindex,nofollow">
+<style id="pwa-tabs">
+body{padding-top:56px!important}
+#pwa-tabs-bar{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;gap:6px;padding:8px 10px;padding-top:calc(8px + env(safe-area-inset-top));background:rgba(15,17,21,.96);border-bottom:1px solid #2a2f3a;backdrop-filter:blur(8px)}
+#pwa-tabs-bar a{flex:1;text-align:center;padding:9px 4px;border-radius:10px;font-size:14px;font-weight:600;color:#9aa3b2;text-decoration:none;border:1px solid #2a2f3a;background:#171a21;white-space:nowrap}
+#pwa-tabs-bar a.on{color:#0f1115;background:#7aa2ff;border-color:#7aa2ff}
+#pwa-tabs-bar .s{display:none}@media(max-width:560px){#pwa-tabs-bar .l{display:none}#pwa-tabs-bar .s{display:inline}}
+</style><style id="pwa-arch">
+body{padding-top:92px!important}
+#pwa-tabs-bar{flex-wrap:wrap}
+#pwa-tabs-bar .day{flex-basis:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:#f5c451;padding:2px 2px 0}
+#pwa-tabs-bar .day a{flex:0 0 auto;padding:3px 10px;font-size:13px;color:#7aa2ff;background:transparent;border-color:#7aa2ff}
+</style></head>
+<body><nav id="pwa-tabs-bar"><a href="index.html"><span class="l">フォロー中ダイジェスト</span><span class="s">フォロー中</span></a><a href="world.html" class="on" aria-current="page"><span class="l">世界のAIニュース</span><span class="s">世界のAI</span></a><a href="jp.html"><span class="l">日本語圏の活用法</span><span class="s">日本語圏</span></a><a href="../../archive.html"><span class="l">過去の号</span><span class="s">過去の号</span></a><div class="day"><span>2026年11月11日（水） の号を表示中</span><a href="../../index.html">最新号へ戻る</a></div></nav>
+<div class="wrap">
+<header>
+<span class="eyebrow">DAILY AI DIGEST</span>
+<h1>本日のAIニュース上位5選（11/11）</h1>
+<div class="sub">11/10〜11/11朝の世界のAIニュースから厳選（日本時間）</div>
+</header>
+<ol class="list">
+<li class="card r1"><div class="rank">1</div><div class="body"><h2>Google、最上位モデル「Gemini 4 Carbon」を公開　長時間のエージェント作業とサイバーセキュリティに強み</h2><p>Google DeepMindは、同社で最も強力なモデルGemini 4 Carbonを公開しました。複雑な知的作業、ソフトウェア開発、科学的推論にわたる長時間のエージェント型ワークフローと、サイバーセキュリティで最先端の性能をうたいます。1つのプロンプトから連携するエージェントのチームを立ち上げ、設計や監査などの深い推論はCarbon、並行作業や検証は軽いモデルに任せる使い方も示しました。APIの導入価格は100万トークンあたり入力2ドル・出力10ドル（11月30日以降は4ドル・20ドル）で、Google AI UltraユーザーにはGeminiアプリやAntigravityでも順次提供されます。</p><a class="src" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/" target="_blank" rel="noopener noreferrer"><span class="tag">Google</span>blog.google →</a></div></li>
+<li class="card r2"><div class="rank">2</div><div class="body"><h2>Anthropic、表計算「Claude Sheets」と共同ボード「Claude Whiteboards」をベータ公開</h2><p>Claudeに頼むだけで、タブ・数式・書式・ドロップダウン付きの表計算を作り、セルも直接編集する「Claude Sheets」が登場しました。Claudeの変更は一つずつ示されて追跡でき、チームで共同編集してExcel形式やCSVに書き出せます。チームでブレストする「Whiteboards」も同時に公開し、分析機能のClaude Dashboardsは「Claude Data」として正式版になりました。いずれも有料プラン向けで、GoogleやMicrosoftのオフィスアプリに正面から挑む形です。</p><a class="src" href="https://japan.cnet.com/article/35254678/" target="_blank" rel="noopener noreferrer"><span class="tag">CNET Japan</span>japan.cnet.com →</a></div></li>
+<li class="card r3"><div class="rank">3</div><div class="body"><h2>Anthropic、上場に向け投資家説明を開始　8億2,500万株を1株70〜78ドルで</h2><p>Anthropicは、8億2,500万株の新規株式公開について投資家との面談を始めました。想定価格は1株70〜78ドルで、Nasdaqに「ANT」の銘柄コードで上場を申請しています。届け出が有効になるまで売り出しはできません。ロイターによると、同社は693億ドル規模とする価格情報をいったん銀行側に送ったあと「不正確だった」として撤回し、更新した書類を出すと伝えたということで、AI企業として最大級の上場の行方が注目されています。</p><a class="src" href="https://www.theneuron.ai/digest/everything-that-happened-in-ai-today-tuesday-november-10-2026/" target="_blank" rel="noopener noreferrer"><span class="tag">The Neuron</span>theneuron.ai →</a></div></li>
+<li class="card r4"><div class="rank">4</div><div class="body"><h2>OpenAI、企業がChatGPT上の自社情報を管理できる新プログラム　接客用AIエージェントも作成可能に</h2><p>OpenAIは、企業がChatGPT上の自社プロフィールを申請・管理し、顧客向けの情報を更新したり、ChatGPTから自社サイトへどれだけ人が送られているかを確認したりできるベータ版を始めました。対象となる米国のネット販売・サービス企業は、自社の商品や規約について質問に答えるAIエージェントも作れます。同じ日には、ChatGPT EnterpriseをAWS Marketplace経由で購入し、AWSの請求にまとめられるようにもなりました。</p><a class="src" href="https://trainingdatadaily.com/archive/2026-11-10/" target="_blank" rel="noopener noreferrer"><span class="tag">VentureBeat他</span>trainingdatadaily.com →</a></div></li>
+<li class="card r5"><div class="rank">5</div><div class="body"><h2>NVIDIA、海外クラウドを通じた中国向けAI半導体の貸し出しを制限と報道</h2><p>報道によると、NVIDIAは海外のクラウド事業者に対し、サービスの51%以上を中国以外の顧客向けに確保するよう求め、中国企業へのAIチップの貸し出しを絞りました。中国ではB300のサーバーラックが最大280万ドルで売買されているとも伝えられています。同じ日には、AI推論基盤のFireworks AIが複数のサイバー攻撃で顧客情報や開発中モデルの一部が漏れたと公表しており、AIインフラをめぐる規制と安全性の課題が続いています。</p><a class="src" href="https://www.theneuron.ai/digest/everything-that-happened-in-ai-today-tuesday-november-10-2026/" target="_blank" rel="noopener noreferrer"><span class="tag">The Neuron</span>theneuron.ai →</a></div></li>
+</ol>
+<footer>毎朝8:08配信 · X Access · 2026-11-11 · <a href="https://ikecchi7web.github.io/ai-news-dashboard/" style="color:var(--accent)" target="_blank" rel="noopener noreferrer">公開ページ</a></footer>
+</div>
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('../../sw.js')})}</script></body>
+</html>
