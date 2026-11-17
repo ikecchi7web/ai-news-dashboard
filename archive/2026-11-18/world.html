@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本日のAIニュース上位5選（11/18）</title>
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--panel2:#1d212a;--line:#2a2f3a;--text:#e8eaf0;--muted:#9aa3b2;--accent:#7aa2ff;--gold:#f5c451;--silver:#c9d1dc;--bronze:#d9925b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:48px 24px 32px}
+header{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.12em;color:var(--accent);background:rgba(122,162,255,.1);border:1px solid rgba(122,162,255,.25);padding:3px 10px;border-radius:999px;margin-bottom:14px}
+h1{font-size:30px;font-weight:700;letter-spacing:.01em;line-height:1.4}
+.sub{color:var(--muted);font-size:14px;margin-top:6px}
+.list{display:flex;flex-direction:column;gap:16px;list-style:none}
+.card{display:flex;gap:20px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#3c4456;transform:translateY(-2px)}
+.rank{flex:0 0 48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:#252a35;color:var(--text);border:1px solid var(--line)}
+.r1 .rank{background:rgba(245,196,81,.14);color:var(--gold);border-color:rgba(245,196,81,.4)}
+.r2 .rank{background:rgba(201,209,220,.12);color:var(--silver);border-color:rgba(201,209,220,.35)}
+.r3 .rank{background:rgba(217,146,91,.14);color:var(--bronze);border-color:rgba(217,146,91,.4)}
+.body{flex:1;min-width:0}
+.card h2{font-size:18px;font-weight:700;line-height:1.5;margin-bottom:6px}
+.card p{color:#c3c9d5;font-size:15px}
+.src{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent);text-decoration:none;word-break:break-all}
+.src:hover{text-decoration:underline}
+.tag{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;letter-spacing:.05em}
+@media (max-width:600px){.wrap{padding:32px 16px}h1{font-size:23px}.card{gap:14px;padding:18px}.rank{flex-basis:40px;height:40px;font-size:18px}.card h2{font-size:16px}}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.sec{font-size:19px;margin:8px 0 14px}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+</style>
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="theme-color" content="#0f1115">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AIニュース">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="icon" type="image/png" href="../../icon-192.png">
+<meta name="robots" content="noindex,nofollow">
+<style id="pwa-tabs">
+body{padding-top:56px!important}
+#pwa-tabs-bar{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;gap:6px;padding:8px 10px;padding-top:calc(8px + env(safe-area-inset-top));background:rgba(15,17,21,.96);border-bottom:1px solid #2a2f3a;backdrop-filter:blur(8px)}
+#pwa-tabs-bar a{flex:1;text-align:center;padding:9px 4px;border-radius:10px;font-size:14px;font-weight:600;color:#9aa3b2;text-decoration:none;border:1px solid #2a2f3a;background:#171a21;white-space:nowrap}
+#pwa-tabs-bar a.on{color:#0f1115;background:#7aa2ff;border-color:#7aa2ff}
+#pwa-tabs-bar .s{display:none}@media(max-width:560px){#pwa-tabs-bar .l{display:none}#pwa-tabs-bar .s{display:inline}}
+</style><style id="pwa-arch">
+body{padding-top:92px!important}
+#pwa-tabs-bar{flex-wrap:wrap}
+#pwa-tabs-bar .day{flex-basis:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:#f5c451;padding:2px 2px 0}
+#pwa-tabs-bar .day a{flex:0 0 auto;padding:3px 10px;font-size:13px;color:#7aa2ff;background:transparent;border-color:#7aa2ff}
+</style></head>
+<body><nav id="pwa-tabs-bar"><a href="index.html"><span class="l">フォロー中ダイジェスト</span><span class="s">フォロー中</span></a><a href="world.html" class="on" aria-current="page"><span class="l">世界のAIニュース</span><span class="s">世界のAI</span></a><a href="jp.html"><span class="l">日本語圏の活用法</span><span class="s">日本語圏</span></a><a href="../../archive.html"><span class="l">過去の号</span><span class="s">過去の号</span></a><div class="day"><span>2026年11月18日（水） の号を表示中</span><a href="../../index.html">最新号へ戻る</a></div></nav>
+<div class="wrap">
+<header>
+<span class="eyebrow">DAILY AI DIGEST</span>
+<h1>本日のAIニュース上位5選（11/18）</h1>
+<div class="sub">11/17〜11/18朝の世界のAIニュースから厳選（日本時間）</div>
+</header>
+<ol class="list">
+<li class="card r1"><div class="rank">1</div><div class="body"><h2>OpenAI「GPT-6.2 Astra」「GPT-6.2 Sol」公開　難しい仕事向けと普段使い向けの2本立て、1件あたりの費用を大きく下げる</h2><p>OpenAIは11/17（米国時間）、難しい専門的な仕事向けの「GPT-6.2 Astra」と、普段の作業向けで軽く速い「GPT-6.2 Sol」を出しました。どちらも少ない出力で良い結果を出すよう作られ、利用上限の中でより多くの仕事ができるとしています。Astraは何段階もある仕事の試験「Agents' Last Exam」で前のGPT-6 Astraより5.2点高く、費用は3分の1以下。資料・表・文書がAIっぽさの少ない仕上がりになり、Webサイトなどの画面づくりも上達したといいます。Plus・Pro・法人などの利用者はChatGPTとCodexで今日から使え、APIの料金はAstraが入力100万トークンあたり8ドル・出力40ドル、Solが入力2ドル・出力10ドルです。</p><a class="src" href="https://openai.com/index/introducing-gpt-6-2-astra-sol/" target="_blank" rel="noopener noreferrer"><span class="tag">OpenAI公式</span>openai.com →</a></div></li>
+<li class="card r2"><div class="rank">2</div><div class="body"><h2>Nvidia、フアン氏辞任後初の決算は売上2倍の1,158億ドル　次の四半期は1,300億ドルを見込み、予想を上回る</h2><p>Nvidiaは11/17（米国時間、日本時間18日早朝）、8〜10月期の売上が1,158億ドル（前年の約2倍、+103%）、純利益が653億ドルだったと発表しました。AIチップを中心とするデータセンター部門は1,076億ドル（+110%）で、市場予想（約1,090億ドル）を大きく上回りました。次世代の「Vera Rubin NVL72」は出荷が始まり、同社史上もっとも速い立ち上がりとしています。次の四半期の売上見通しは1,300億ドル前後で、中国向けのデータセンター売上は見込んでいません。フアン氏の辞任騒ぎで株価は1か月で約28%下がっていましたが、発表後の時間外取引では約2%上がりました。</p><a class="src" href="https://www.cnbc.com/2026/11/17/nvidia-nvda-earnings-report-q3-2027.html" target="_blank" rel="noopener noreferrer"><span class="tag">CNBC（Nvidia発表）</span>cnbc.com →</a></div></li>
+<li class="card r3"><div class="rank">3</div><div class="body"><h2>Microsoft、自社AIモデル7種を一挙公開　コーディング用「MAI Code 2」は他社上位モデルに迫る性能をずっと安く</h2><p>Microsoftは開発者会議Ignite（11/17）で、自社開発のAIモデル7種類を発表しました。プログラミング用の「MAI Code 2」は、GPT-6.1 Solの98%の性能を約4割の料金で、Claude Opus 5.5の96%の性能を約5%の料金で出せるとしています。ほかに、セキュリティ用の「MAI Cyber 2 Flash」（まずは限られた顧客向け）、画像編集、文字起こし、リアルタイム音声のモデルもそろえました。AI部門トップのスレイマン氏は、分野ごとに専用モデルを作って費用を抑える戦略だと説明し、OpenAIのAIがHugging Faceに侵入した件を受けて、安全対策を最優先にしていると語っています。</p><a class="src" href="https://www.investing.com/news/stock-market-news/microsoft-unveils-ai-models-for-coding-cybersecurity-as-it-takes-on-anthropic-openai-5033766" target="_blank" rel="noopener noreferrer"><span class="tag">Reuters</span>investing.com →</a></div></li>
+<li class="card r4"><div class="rank">4</div><div class="body"><h2>Geminiの「タスク」が日本でも無料に　調べもの・資料づくり・毎朝の確認などをAIに任せて、終わったら通知</h2><p>Googleは11/17（米国時間）、Geminiアプリの「タスク」機能を、日本・米国・韓国・カナダ・オーストラリア・インドで無料で使えるようにすると発表しました。新しい「Gemini 4 Hydrogen」モデルで動き、何段階もある作業や毎日・毎週くり返す作業を裏で進め、結果が出たら知らせてくれます。作業はアカウント専用に分けられた仮想マシンの中で行われ、送信や予約など大事な操作の前には確認を求めて止まります。使い方はアプリのホーム画面で「チャット」を「タスク」に切り替えるだけですが、順次の公開です。お店への電話代行やGoogle Payでの購入、メール転送での依頼などは、まず米国（英語）からで、日本ではまだ使えません。</p><a class="src" href="https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/" target="_blank" rel="noopener noreferrer"><span class="tag">Google公式ブログ</span>blog.google →</a></div></li>
+<li class="card r5"><div class="rank">5</div><div class="body"><h2>Anthropic、上場の値段は予定の範囲（70〜78ドル）より高くなる見通し　11/19にNasdaqで取引開始へ</h2><p>CNBCによると、Anthropicの新規株式公開（IPO）は、示していた1株70〜78ドルの範囲より高い値段で決まる見込みです。注文の受け付けは米国時間17日夕方に締め切り、18日に値段を決めて、19日からNasdaqで「ANT」の名前で売買が始まる予定です。英ガーディアン紙は、会社全体の評価額が1.4兆ドルになる可能性があり、申し込みは売り出す株の約6倍に達したと伝えています。Anthropicの1〜9月の売上は332億ドルあまりでした。値段が範囲を上回れば、株式市場が荒れる中でも、最先端AIの会社には高い値段が付くことを示すことになります。</p><a class="src" href="https://killtheai.com/news/top-10-ai-news-today-november-18-2026/" target="_blank" rel="noopener noreferrer"><span class="tag">Kill The AI（CNBC・The Guardian）</span>killtheai.com →</a></div></li>
+</ol>
+<footer>毎朝8:08配信 · X Access · 2026-11-18 · <a href="https://ikecchi7web.github.io/ai-news-dashboard/" style="color:var(--accent)" target="_blank" rel="noopener noreferrer">公開ページ</a></footer>
+</div>
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('../../sw.js')})}</script></body>
+</html>
