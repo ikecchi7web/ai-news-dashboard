@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>フォロー中アカウントのダイジェスト（11/20）</title>
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--panel2:#1d212a;--line:#2a2f3a;--text:#e8eaf0;--muted:#9aa3b2;--accent:#7aa2ff;--gold:#f5c451;--silver:#c9d1dc;--bronze:#d9925b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:48px 24px 32px}
+header{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.12em;color:var(--accent);background:rgba(122,162,255,.1);border:1px solid rgba(122,162,255,.25);padding:3px 10px;border-radius:999px;margin-bottom:14px}
+h1{font-size:30px;font-weight:700;letter-spacing:.01em;line-height:1.4}
+.sub{color:var(--muted);font-size:14px;margin-top:6px}
+.list{display:flex;flex-direction:column;gap:16px;list-style:none}
+.card{display:flex;gap:20px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#3c4456;transform:translateY(-2px)}
+.rank{flex:0 0 48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:#252a35;color:var(--text);border:1px solid var(--line)}
+.r1 .rank{background:rgba(245,196,81,.14);color:var(--gold);border-color:rgba(245,196,81,.4)}
+.r2 .rank{background:rgba(201,209,220,.12);color:var(--silver);border-color:rgba(201,209,220,.35)}
+.r3 .rank{background:rgba(217,146,91,.14);color:var(--bronze);border-color:rgba(217,146,91,.4)}
+.body{flex:1;min-width:0}
+.card h2{font-size:18px;font-weight:700;line-height:1.5;margin-bottom:6px}
+.card p{color:#c3c9d5;font-size:15px}
+.src{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent);text-decoration:none;word-break:break-all}
+.src:hover{text-decoration:underline}
+.tag{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;letter-spacing:.05em}
+@media (max-width:600px){.wrap{padding:32px 16px}h1{font-size:23px}.card{gap:14px;padding:18px}.rank{flex-basis:40px;height:40px;font-size:18px}.card h2{font-size:16px}}
+
+.sec{font-size:19px;margin:8px 0 14px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:28px;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+td:first-child,th:first-child{text-align:left}
+td.n{color:var(--gold);font-weight:700}
+.who{font-size:13px;color:var(--accent);font-weight:700;margin:22px 0 8px}
+.post{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.post:hover{border-color:#3c4456}
+.post .meta{font-size:12px;color:var(--muted)}
+.post p{font-size:14px;color:#c3c9d5;margin-top:4px;white-space:pre-line}
+.none{color:var(--muted);font-size:14px;margin-bottom:6px}
+.agent{display:block;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;color:var(--text);text-decoration:none;transition:border-color .2s}
+.agent:hover{border-color:#3c4456}
+.agent b{color:var(--gold);font-size:14px}
+.agent p{font-size:15px;color:#c3c9d5;margin-top:2px}
+.agent .meta{font-size:12px;color:var(--muted)}
+</style>
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="theme-color" content="#0f1115">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AIニュース">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="icon" type="image/png" href="../../icon-192.png">
+<meta name="robots" content="noindex,nofollow">
+<style id="pwa-tabs">
+body{padding-top:56px!important}
+#pwa-tabs-bar{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;gap:6px;padding:8px 10px;padding-top:calc(8px + env(safe-area-inset-top));background:rgba(15,17,21,.96);border-bottom:1px solid #2a2f3a;backdrop-filter:blur(8px)}
+#pwa-tabs-bar a{flex:1;text-align:center;padding:9px 4px;border-radius:10px;font-size:14px;font-weight:600;color:#9aa3b2;text-decoration:none;border:1px solid #2a2f3a;background:#171a21;white-space:nowrap}
+#pwa-tabs-bar a.on{color:#0f1115;background:#7aa2ff;border-color:#7aa2ff}
+#pwa-tabs-bar .s{display:none}@media(max-width:560px){#pwa-tabs-bar .l{display:none}#pwa-tabs-bar .s{display:inline}}
+</style><style id="pwa-arch">
+body{padding-top:92px!important}
+#pwa-tabs-bar{flex-wrap:wrap}
+#pwa-tabs-bar .day{flex-basis:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:#f5c451;padding:2px 2px 0}
+#pwa-tabs-bar .day a{flex:0 0 auto;padding:3px 10px;font-size:13px;color:#7aa2ff;background:transparent;border-color:#7aa2ff}
+</style></head>
+<body><nav id="pwa-tabs-bar"><a href="index.html" class="on" aria-current="page"><span class="l">フォロー中ダイジェスト</span><span class="s">フォロー中</span></a><a href="world.html"><span class="l">世界のAIニュース</span><span class="s">世界のAI</span></a><a href="jp.html"><span class="l">日本語圏の活用法</span><span class="s">日本語圏</span></a><a href="../../archive.html"><span class="l">過去の号</span><span class="s">過去の号</span></a><div class="day"><span>2026年11月20日（金） の号を表示中</span><a href="../../index.html">最新号へ戻る</a></div></nav>
+<div class="wrap">
+<header>
+<span class="eyebrow">FOLLOWING DIGEST</span>
+<h1>フォロー中アカウントのダイジェスト（11/20）</h1>
+<div class="sub">ホームタイムライン1ページ（11/19 0時以降を指定、取得できた範囲は11/19 00:18〜11/20 07:38、日本時間、62件・リポストと返信を除く）から集計</div>
+</header>
+<h2 class="sec">AIエージェントの使い方 5選（フォロー中より）</h2>
+<a class="agent" href="https://x.com/ClaudeCode_love/status/2123396119745212693" target="_blank" rel="noopener noreferrer"><b>1. @ClaudeCode_love</b> <span class="meta">♥907 · 保存 1,260</span><p>海外の開発者が公開した「AnyMachine」は、全方向の参考画像→部品のアップ→BlenderのPythonで1部品ずつ組ませる手順書（PIPELINE.md）とスクリプト集で、Claude Codeに機械の3Dモデルを作らせ、人は設計を選んで各段階を確認するだけで済む。</p></a><a class="agent" href="https://x.com/ichiaimarketer/status/2123412251730382960" target="_blank" rel="noopener noreferrer"><b>2. @ichiaimarketer</b> <span class="meta">♥269 · 保存 405</span><p>Mac Studio（M3 Ultra・96GB）を24時間つけっぱなしにしてClaude CodeとCodexのAI社員を同時に動かし、マイクと音声入力アプリ（Aqua Voice）で声をそのままAIへの指示にするなど、機材を5つの役割に分けた作業環境を図解で公開している。</p></a><a class="agent" href="https://x.com/codexneo4/status/2123312065649463572" target="_blank" rel="noopener noreferrer"><b>3. @codexneo4</b> <span class="meta">♥52 · 保存 75</span><p>CodexでGPT-6.2 Solのトークン消費を抑えるには、プロジェクト直下のAGENTS.mdに「関連ファイルから調べ、全体を読み込まない」「取得済みの情報を再利用する」「目的を満たす最小限の修正だけ行う」といった作業方針を4ステップで書き足すとよい、とコピペ用の指示付きでまとめている。</p></a><a class="agent" href="https://x.com/ClaudeCode_love/status/2123329185808777623" target="_blank" rel="noopener noreferrer"><b>4. @ClaudeCode_love</b> <span class="meta">♥35 · 保存 57</span><p>Claude Codeの使用量対策はキャッシュを切らさないことが9割で、作業の途中で /model・/fast の切り替えや /compact を避け、間を空けすぎないのがコツだと、7週間・約19億トークンのうち96%をキャッシュから読めた実験記録と公式ドキュメントをもとに解説している。</p></a><a class="agent" href="https://x.com/Codestudiopjbk/status/2123259727903879280" target="_blank" rel="noopener noreferrer"><b>5. @Codestudiopjbk</b> <span class="meta">♥28 · 保存 41</span><p>新モデルが来たら、GPT-6.2の公式ガイドとCodexのModelsページをCodex自身に読ませ、~/.codex/config.toml・AGENTS.md・スキルを「まだ何も変更しないで」と点検させ、合わないモデルやeffort設定と最小の修正案を出させる依頼文を日本語訳で紹介している。</p></a>
+<h2 class="sec" style="margin-top:28px">投稿件数（リポスト・返信を除く）</h2>
+<table><tr><th>アカウント</th><th>11/19（前日）</th><th>11/20（今朝8時まで）</th></tr>
+<tr><td>@elonmusk</td><td class="n">14</td><td>1</td></tr><tr><td>@ds_nakajima</td><td class="n">10</td><td>0</td></tr><tr><td>@ichiaimarketer</td><td class="n">5</td><td>2</td></tr><tr><td>@ClaudeCode_aca</td><td class="n">4</td><td>1</td></tr><tr><td>@sugawara11</td><td class="n">4</td><td>0</td></tr><tr><td>@ClaudeCode_love</td><td class="n">4</td><td>0</td></tr><tr><td>@AI_masaou</td><td class="n">3</td><td>0</td></tr><tr><td>@codexneo4</td><td class="n">3</td><td>0</td></tr><tr><td>@Codestudiopjbk</td><td class="n">3</td><td>0</td></tr><tr><td>@claudecode84</td><td class="n">2</td><td>0</td></tr><tr><td>@woda_minato</td><td class="n">1</td><td>1</td></tr><tr><td>@nakaji_sub_</td><td class="n">1</td><td>0</td></tr><tr><td>@halukik_0520</td><td class="n">0</td><td>3</td></tr><tr><td>@videoai_otaku</td><td class="n">0</td><td>0</td></tr><tr><td>@jiro_aicompany</td><td class="n">0</td><td>0</td></tr><tr><td>@AiAircle34052</td><td class="n">0</td><td>0</td></tr><tr><td>@swipecard7web</td><td class="n">0</td><td>0</td></tr><tr><td><b>合計</b></td><td class="n">54</td><td>8</td></tr>
+</table>
+<h2 class="sec">各アカウントで反響の大きかった投稿</h2>
+<div class="who">@elonmusk</div><a class="post" href="https://x.com/elonmusk/status/2123159371119280372" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 06:00 · ♥62,395 · RP 4,892 · 表示 5,769,432</span><p>We put a lot of thought into public safety https://t.co/HFinXIw3pq</p></a><a class="post" href="https://x.com/elonmusk/status/2123272422719967730" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 13:29 · ♥46,664 · RP 4,219 · 表示 6,639,862</span><p>4 years ago https://t.co/odjxLrGjnN</p></a><div class="who">@ds_nakajima</div><a class="post" href="https://x.com/ds_nakajima/status/2123225601280758109" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 10:23 · ♥112 · RP 6 · 表示 18,783</span><p>脆弱性もうええて…PHP… https://t.co/AgWmMzhyJg</p></a><a class="post" href="https://x.com/ds_nakajima/status/2123336770721141103" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 17:45 · ♥94 · RP 10 · 表示 10,249</span><p>え、これやばすぎないか。「公式サイトでクレカ情報入力したら実は罠でした」って、どうやって回避するんや。もう使い捨てクレカを使うくらいじゃないと漏えいを回避できないのでは。 http…</p></a><div class="who">@ichiaimarketer</div><a class="post" href="https://x.com/ichiaimarketer/status/2123412251730382960" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 22:45 · ♥269 · RP 22 · 表示 26,606</span><p>ガチでこれ出したくなかったんですけど、もういいです。 Mac Studio、自分の環境全部晒します。 挿してる機材を1つ残らず、1枚の図解にまとめました👇 マジで有益なので保存推奨…</p></a><a class="post" href="https://x.com/ichiaimarketer/status/2123350851037319380" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 18:41 · ♥59 · RP 1 · 表示 4,973</span><p>【速報】 1人AI起業家ついに４台目の 512GBのMacStudioを追加購入💰 これからもXでAI最先端を発信しまくります〜〜 https://t.co/6RZj0wcdLY …</p></a><div class="who">@ClaudeCode_aca</div><a class="post" href="https://x.com/ClaudeCode_aca/status/2123174414527373575" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 07:00 · ♥36 · RP 1 · 表示 5,415</span><p>CLAUDE.mdの行数が増えるほど、守られなくなっていませんか。 500行を超えると、特定のルールだけでなく、全部のルールが均等に薄まります。 減らす基準は、1つだけです。 全部…</p></a><a class="post" href="https://x.com/ClaudeCode_aca/status/2123341895581700209" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 18:05 · ♥12 · RP 0 · 表示 1,717</span><p>https://t.co/Qy3RqztNna</p></a><div class="who">@sugawara11</div><a class="post" href="https://x.com/sugawara11/status/2123367178540027956" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 19:46 · ♥96 · RP 11 · 表示 14,280</span><p>カスタマーハラスメントのことをカスハラと言ったりしますが、カスハラの定義があるのを知ってますか？ 実は3つの条件が決められています。 ①顧客取引先などによる言動 クレームなどのお客…</p></a><a class="post" href="https://x.com/sugawara11/status/2123330829304971746" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 17:21 · ♥81 · RP 8 · 表示 15,715</span><p>2026年10月以降から平均時給が5%増へ… パート・アルバイトの働き方はどうなる？ https://t.co/PJT6NjLdW4 @YouTube</p></a><div class="who">@ClaudeCode_love</div><a class="post" href="https://x.com/ClaudeCode_love/status/2123396119745212693" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 21:41 · ♥907 · RP 95 · 表示 44,979</span><p>Blenderで3Dを作ってる人、今すぐ全員これ保存して🫵 海外の開発者が、Claude CodeとFable 5.2に機械の3Dモデルを作らせる手順を丸ごと公開した😳 https…</p></a><a class="post" href="https://x.com/ClaudeCode_love/status/2123195296549380430" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 08:23 · ♥188 · RP 11 · 表示 12,991</span><p>あ、これ今週の3D作品で1番見てほしいやつだわ。。。。。 海外のクリエイターがFable 5.2とOpus 5.5で作った、どこまでも続く紙の世界「Papertrails」。 ht…</p></a><div class="who">@AI_masaou</div><a class="post" href="https://x.com/AI_masaou/status/2123185827337601027" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 07:45 · ♥33 · RP 0 · 表示 1,917</span><p>なんでCarbonとHydrogenの間の価格やのにAAのスコアがCarbonより上なんだ・・・？笑 コレは楽しみすぎる https://t.co/da2bITbPfL</p></a><a class="post" href="https://x.com/AI_masaou/status/2123370718801097038" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 20:00 · ♥28 · RP 6 · 表示 2,289</span><p>【※人数限定】 Grok Bot ヴァイキング 1DAYマスター勉強会 11/25（水）20:00〜 Grok Botを中心とした パーソナルAIエージェントの 徹底解剖から具体の…</p></a><div class="who">@codexneo4</div><a class="post" href="https://x.com/codexneo4/status/2123312065649463572" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 16:07 · ♥52 · RP 5 · 表示 8,268</span><p>CodexでGPT-6.2 Solのトークン消費気になる人 これ保存 👇 GPT-6.2 Solで使える「省エネ運用法」が がっつりまとめられてる‼️ 無駄な探索、同じ情報の読み直…</p></a><a class="post" href="https://x.com/codexneo4/status/2123281111526588812" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 14:04 · ♥26 · RP 4 · 表示 3,899</span><p>CodexやGPTの回答が分かりずらい そんな人はOpenAI責任者本人が 先日公開したプロンプトを導入して 👇 CodexまたはChatGPTにコピペして Tiboが紹介していた…</p></a><div class="who">@Codestudiopjbk</div><a class="post" href="https://x.com/Codestudiopjbk/status/2123331947145593303" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 17:26 · ♥36 · RP 3 · 表示 3,237</span><p>【衝撃】 Codexに「自分のサービスの発表動画を作って」と 頼めるプラグインが公開された😳 Ava Studioの「Launch videos」 https://t.co/2hP…</p></a><a class="post" href="https://x.com/Codestudiopjbk/status/2123259727903879280" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 12:39 · ♥28 · RP 1 · 表示 2,386</span><p>【保存版】 GPT-6.2の公式ガイドをCodex自身に読ませて、 今のCodex設定を点検させる依頼文が海外で話題😳 これ日本語にするとこう👇 「https://t.co/nFG…</p></a><div class="who">@claudecode84</div><a class="post" href="https://x.com/claudecode84/status/2123266099030667712" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 13:04 · ♥245 · RP 27 · 表示 18,933</span><p>これ、マジで宝の山すぎる Fable 5.2で 「自分専用のセカンドブレイン」を 作るためのプロンプトがこれ。 散らかったノートや、 思いついたまま放置したアイデア。 それらを整理…</p></a><a class="post" href="https://x.com/claudecode84/status/2123360647539012090" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 19:20 · ♥36 · RP 3 · 表示 3,126</span><p>寝る前に、 このプロンプトを Claude Fable 5.2に貼ってみて👇 あなたが寝ている間に、 4体のAIエージェントが 暗号資産市場を調査。 戦略候補を25件以上出し、 手…</p></a><div class="who">@woda_minato</div><a class="post" href="https://x.com/woda_minato/status/2123073448176226638" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 00:18 · ♥8 · RP 0 · 表示 668</span><p>【ガチ】 最近作ったもの ・広告配信用動画作成 ・遷移先LP制作 ・広告配信先自動停止、調整システム ・広告結果分析ツール ・採用情報自動作成 →社員、バイト別 3ポジション ・勤…</p></a><a class="post" href="https://x.com/woda_minato/status/2123437455710023698" target="_blank" rel="noopener noreferrer"><span class="meta">11/20 00:25 · ♥1 · RP 0 · 表示 130</span><p>音声録音はマイク必須。 じゃないと鼻をすすったり椅子の音が入ったり衣擦れの音が入った時に音の波形見るだけだとなかなかカット出来ない。 https://t.co/9kTftDbRH2</p></a><div class="who">@nakaji_sub_</div><a class="post" href="https://x.com/nakaji_sub_/status/2123301086060855806" target="_blank" rel="noopener noreferrer"><span class="meta">11/19 15:23 · ♥8 · RP 0 · 表示 289</span><p>自作freeeの話は議論がほんと噛み合わないな。機能だけならAIで作れるってことは全く否定してないんだけどな…</p></a><div class="who">@halukik_0520</div><a class="post" href="https://x.com/halukik_0520/status/2123432620273054108" target="_blank" rel="noopener noreferrer"><span class="meta">11/20 00:06 · ♥14 · RP 0 · 表示 1,737</span><p>最近のHarukazeでは、AIに仕事を任せつつ、散歩をする、工作をする、映画をみる、音楽をきく、ということが流行ってきてます😌 https://t.co/PTNHke8PJz h…</p></a><a class="post" href="https://x.com/halukik_0520/status/2123443688299016487" target="_blank" rel="noopener noreferrer"><span class="meta">11/20 00:50 · ♥7 · RP 3 · 表示 694</span><p>表紙デザイン、Harukazeで担当させていただいております！「AI時代に必要になるのは△△××〜」みたいな議論って、もはや毎日みかけるようになりましたが、 その問いに対して、これ…</p></a>
+<footer>毎朝8:08配信 · X Access · フォロー中ダイジェスト · 2026-11-20 · <a href="https://ikecchi7web.github.io/ai-news-dashboard/" style="color:var(--accent)" target="_blank" rel="noopener noreferrer">公開ページ</a></footer>
+</div>
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('../../sw.js')})}</script></body>
+</html>
